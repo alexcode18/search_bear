@@ -4,7 +4,9 @@ class CreateUsers < ActiveRecord::Migration
     	t.string :parent_email
     	t.string :password_digest
     	t.string :child_name
+    	t.string :child_gender
     	t.string :favorite_color
+
 
     	t.timestamps
     end

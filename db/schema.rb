@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141214220723) do
+ActiveRecord::Schema.define(version: 20141215171858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,8 +27,22 @@ ActiveRecord::Schema.define(version: 20141214220723) do
     t.datetime "updated_at"
   end
 
+  create_table "memories", force: true do |t|
+    t.text     "all"
+    t.text     "transportation"
+    t.text     "fruits"
+    t.text     "vegetables"
+    t.text     "animals"
+    t.text     "letters"
+    t.text     "numbers"
+    t.text     "people"
+    t.integer  "bear_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "searches", force: true do |t|
-    t.string   "search"
+    t.string   "input"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -38,6 +52,7 @@ ActiveRecord::Schema.define(version: 20141214220723) do
     t.string   "parent_email"
     t.string   "password_digest"
     t.string   "child_name"
+    t.string   "child_gender"
     t.string   "favorite_color"
     t.datetime "created_at"
     t.datetime "updated_at"
