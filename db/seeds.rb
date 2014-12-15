@@ -7,14 +7,35 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'ffaker'
 
-Person.delete_all
+User.delete_all
+Bear.delete_all
+Search.delete_all
 
-(1..10).each do
 
-	user = User.new
+i = 0
+
+while i < 20 do
+
+	user = User.new()
 	user.parent_email = Faker::Internet.email()
+	user.password_digest = "happy"
 	user.child_name = Faker::Name.first_name()
-	user.gender = ["M", "F"].sample
-	
-	
+	user.child_gender = ["M", "F"].sample
+	user.favorite_color = ["red", "yellow", "green", "blue"].sample
+
+	bear = Bear.new()
+	bear.name = Faker::Name.first_name()
+	bear.gender = ["M", "F"].sample
+	bear.hunger = 100
+	bear.happiness = 100
+	bear.energy = 100
+	bear.user_id = i
+
+	(1..3).each do
+		search = Search.new()
+		search.user_id = i
+		search.input = ["panda", "whale", "zebra", "ice cream", "magic", "smile"].sample
+	end
+
+	i += 1
 end
