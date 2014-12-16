@@ -18,7 +18,8 @@ while i < 20 do
 
 	user = User.new()
 	user.parent_email = Faker::Internet.email()
-	user.password_digest = "happy"
+	user.password = "happy"
+	user.password_confirmation = "happy"
 	user.child_name = Faker::Name.first_name()
 	user.child_gender = ["M", "F"].sample
 	user.favorite_color = ["red", "yellow", "green", "blue"].sample

@@ -1644,3 +1644,422 @@ BCrypt::Errors::InvalidHash (invalid hash):
   Rendered /Users/alexschattner/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
   Rendered /Users/alexschattner/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
   Rendered /Users/alexschattner/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (19.7ms)
+  [1m[36m (2.6ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (1.7ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateBears (20141214201537)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (3.7ms)[0m  [1mCREATE TABLE "bears" ("id" serial primary key, "name" character varying(255), "gender" character varying(255), "hunger" integer, "happiness" integer, "energy" integer, "user_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20141214201537"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+Migrating to CreateUsers (20141214201549)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (2.8ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "parent_email" character varying(255), "password_digest" character varying(255), "child_name" character varying(255), "child_gender" character varying(255), "favorite_color" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20141214201549"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+Migrating to CreateSearches (20141214220723)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (19.3ms)[0m  [1mCREATE TABLE "searches" ("id" serial primary key, "keyword" character varying(255), "user_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20141214220723"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateMemory (20141215171858)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (2.8ms)[0m  [1mCREATE TABLE "memories" ("id" serial primary key, "category" character varying(255), "image_url" character varying(255), "bear_id" integer, "search_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20141215171858"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mSQL (0.6ms)[0m  DELETE FROM "users"
+  [1m[36mSQL (0.6ms)[0m  [1mDELETE FROM "bears"[0m
+  [1m[35mSQL (0.4ms)[0m  DELETE FROM "searches"
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."parent_email" = 'abraham@weissnatturner.com' LIMIT 1
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "users" ("child_gender", "child_name", "created_at", "favorite_color", "parent_email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["child_gender", "F"], ["child_name", "Kaitlyn"], ["created_at", "2014-12-16 15:20:42.697803"], ["favorite_color", "yellow"], ["parent_email", "abraham@weissnatturner.com"], ["password_digest", "$2a$10$EiO2ZziNqAyXka7kcD7th.WhRGMS4iBK2gDkFOTsiEJ2qzmlw5/Gi"], ["updated_at", "2014-12-16 15:20:42.697803"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "bears" ("created_at", "energy", "gender", "happiness", "hunger", "name", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["created_at", "2014-12-16 15:20:42.711077"], ["energy", 100], ["gender", "M"], ["happiness", 100], ["hunger", 100], ["name", "Della"], ["updated_at", "2014-12-16 15:20:42.711077"], ["user_id", 0]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:42.718990"], ["keyword", "smile"], ["updated_at", "2014-12-16 15:20:42.718990"], ["user_id", 0]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-12-16 15:20:42.721523"], ["keyword", "magic"], ["updated_at", "2014-12-16 15:20:42.721523"], ["user_id", 0]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:42.723143"], ["keyword", "smile"], ["updated_at", "2014-12-16 15:20:42.723143"], ["user_id", 0]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."parent_email" = 'eleanora@prohaskaschiller.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("child_gender", "child_name", "created_at", "favorite_color", "parent_email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["child_gender", "F"], ["child_name", "Stella"], ["created_at", "2014-12-16 15:20:42.800427"], ["favorite_color", "red"], ["parent_email", "eleanora@prohaskaschiller.com"], ["password_digest", "$2a$10$AMPNqUXXqZsSmla1.iddZ.cTnapTMVTlb69e3FutP/CyQGR/OG0zu"], ["updated_at", "2014-12-16 15:20:42.800427"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bears" ("created_at", "energy", "gender", "happiness", "hunger", "name", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["created_at", "2014-12-16 15:20:42.802622"], ["energy", 100], ["gender", "M"], ["happiness", 100], ["hunger", 100], ["name", "Kian"], ["updated_at", "2014-12-16 15:20:42.802622"], ["user_id", 1]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:42.804694"], ["keyword", "magic"], ["updated_at", "2014-12-16 15:20:42.804694"], ["user_id", 1]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-12-16 15:20:42.806770"], ["keyword", "whale"], ["updated_at", "2014-12-16 15:20:42.806770"], ["user_id", 1]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:42.808509"], ["keyword", "magic"], ["updated_at", "2014-12-16 15:20:42.808509"], ["user_id", 1]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."parent_email" = 'fannie.crist@friesen.info' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("child_gender", "child_name", "created_at", "favorite_color", "parent_email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["child_gender", "M"], ["child_name", "Mayra"], ["created_at", "2014-12-16 15:20:42.884669"], ["favorite_color", "green"], ["parent_email", "fannie.crist@friesen.info"], ["password_digest", "$2a$10$M6/.TMGrs.OXU5520muZj.89ZuDrGXP8bjH9k3Y8MGpKgpyAbWV2a"], ["updated_at", "2014-12-16 15:20:42.884669"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bears" ("created_at", "energy", "gender", "happiness", "hunger", "name", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["created_at", "2014-12-16 15:20:42.887839"], ["energy", 100], ["gender", "M"], ["happiness", 100], ["hunger", 100], ["name", "Vito"], ["updated_at", "2014-12-16 15:20:42.887839"], ["user_id", 2]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:42.890150"], ["keyword", "smile"], ["updated_at", "2014-12-16 15:20:42.890150"], ["user_id", 2]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-12-16 15:20:42.891984"], ["keyword", "whale"], ["updated_at", "2014-12-16 15:20:42.891984"], ["user_id", 2]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:42.893688"], ["keyword", "ice cream"], ["updated_at", "2014-12-16 15:20:42.893688"], ["user_id", 2]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."parent_email" = 'rodger@mcculloughbartell.co.uk' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("child_gender", "child_name", "created_at", "favorite_color", "parent_email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["child_gender", "F"], ["child_name", "Lorena"], ["created_at", "2014-12-16 15:20:42.971076"], ["favorite_color", "green"], ["parent_email", "rodger@mcculloughbartell.co.uk"], ["password_digest", "$2a$10$0F3MKQvfFM34nHp/.E1LbOBEDocPIrfw.zyBgJ/M/y/u7x3FVomH6"], ["updated_at", "2014-12-16 15:20:42.971076"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bears" ("created_at", "energy", "gender", "happiness", "hunger", "name", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["created_at", "2014-12-16 15:20:42.973209"], ["energy", 100], ["gender", "M"], ["happiness", 100], ["hunger", 100], ["name", "Chance"], ["updated_at", "2014-12-16 15:20:42.973209"], ["user_id", 3]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:42.975231"], ["keyword", "smile"], ["updated_at", "2014-12-16 15:20:42.975231"], ["user_id", 3]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-12-16 15:20:42.976981"], ["keyword", "smile"], ["updated_at", "2014-12-16 15:20:42.976981"], ["user_id", 3]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:42.978612"], ["keyword", "zebra"], ["updated_at", "2014-12-16 15:20:42.978612"], ["user_id", 3]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."parent_email" = 'filiberto_kling@hirthe.co.uk' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("child_gender", "child_name", "created_at", "favorite_color", "parent_email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["child_gender", "F"], ["child_name", "Paolo"], ["created_at", "2014-12-16 15:20:43.055681"], ["favorite_color", "red"], ["parent_email", "filiberto_kling@hirthe.co.uk"], ["password_digest", "$2a$10$dLAScHIXsnqwpm9faDQFyehuNSnSd8clTHl65GZ91YZuVl.x5NoMC"], ["updated_at", "2014-12-16 15:20:43.055681"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bears" ("created_at", "energy", "gender", "happiness", "hunger", "name", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["created_at", "2014-12-16 15:20:43.058378"], ["energy", 100], ["gender", "M"], ["happiness", 100], ["hunger", 100], ["name", "Wellington"], ["updated_at", "2014-12-16 15:20:43.058378"], ["user_id", 4]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:43.060534"], ["keyword", "whale"], ["updated_at", "2014-12-16 15:20:43.060534"], ["user_id", 4]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-12-16 15:20:43.062390"], ["keyword", "panda"], ["updated_at", "2014-12-16 15:20:43.062390"], ["user_id", 4]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:43.064219"], ["keyword", "panda"], ["updated_at", "2014-12-16 15:20:43.064219"], ["user_id", 4]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."parent_email" = 'jonas_flatley@miller.co.uk' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("child_gender", "child_name", "created_at", "favorite_color", "parent_email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["child_gender", "M"], ["child_name", "Jeanette"], ["created_at", "2014-12-16 15:20:43.140514"], ["favorite_color", "green"], ["parent_email", "jonas_flatley@miller.co.uk"], ["password_digest", "$2a$10$Qt21gSHgpKo8k5n4UqNcF.Gm5jLPDsh/SylSfdiT/89tol58uot7O"], ["updated_at", "2014-12-16 15:20:43.140514"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bears" ("created_at", "energy", "gender", "happiness", "hunger", "name", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["created_at", "2014-12-16 15:20:43.142711"], ["energy", 100], ["gender", "F"], ["happiness", 100], ["hunger", 100], ["name", "Delbert"], ["updated_at", "2014-12-16 15:20:43.142711"], ["user_id", 5]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:43.144866"], ["keyword", "magic"], ["updated_at", "2014-12-16 15:20:43.144866"], ["user_id", 5]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-12-16 15:20:43.146645"], ["keyword", "smile"], ["updated_at", "2014-12-16 15:20:43.146645"], ["user_id", 5]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:43.148434"], ["keyword", "magic"], ["updated_at", "2014-12-16 15:20:43.148434"], ["user_id", 5]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."parent_email" = 'karianne@okon.ca' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("child_gender", "child_name", "created_at", "favorite_color", "parent_email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["child_gender", "F"], ["child_name", "Donny"], ["created_at", "2014-12-16 15:20:43.225542"], ["favorite_color", "yellow"], ["parent_email", "karianne@okon.ca"], ["password_digest", "$2a$10$/1CIkF8yFZbymOTj3mK8Qu3QfWSOlv46vYVcVklzNesWi/QupTqZa"], ["updated_at", "2014-12-16 15:20:43.225542"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bears" ("created_at", "energy", "gender", "happiness", "hunger", "name", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["created_at", "2014-12-16 15:20:43.227645"], ["energy", 100], ["gender", "M"], ["happiness", 100], ["hunger", 100], ["name", "Julian"], ["updated_at", "2014-12-16 15:20:43.227645"], ["user_id", 6]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:43.229579"], ["keyword", "zebra"], ["updated_at", "2014-12-16 15:20:43.229579"], ["user_id", 6]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-12-16 15:20:43.231182"], ["keyword", "zebra"], ["updated_at", "2014-12-16 15:20:43.231182"], ["user_id", 6]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:43.232790"], ["keyword", "ice cream"], ["updated_at", "2014-12-16 15:20:43.232790"], ["user_id", 6]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."parent_email" = 'jerrod.stark@halvorson.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("child_gender", "child_name", "created_at", "favorite_color", "parent_email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["child_gender", "F"], ["child_name", "Ardella"], ["created_at", "2014-12-16 15:20:43.309254"], ["favorite_color", "red"], ["parent_email", "jerrod.stark@halvorson.com"], ["password_digest", "$2a$10$fmlB3.f4mBhA3ZEvqjmCXugGOK22aQBc14JJ/qQbHsqBKo.vjj5n6"], ["updated_at", "2014-12-16 15:20:43.309254"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "bears" ("created_at", "energy", "gender", "happiness", "hunger", "name", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["created_at", "2014-12-16 15:20:43.311167"], ["energy", 100], ["gender", "M"], ["happiness", 100], ["hunger", 100], ["name", "Aryanna"], ["updated_at", "2014-12-16 15:20:43.311167"], ["user_id", 7]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:43.312927"], ["keyword", "ice cream"], ["updated_at", "2014-12-16 15:20:43.312927"], ["user_id", 7]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-12-16 15:20:43.314556"], ["keyword", "panda"], ["updated_at", "2014-12-16 15:20:43.314556"], ["user_id", 7]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:43.316104"], ["keyword", "whale"], ["updated_at", "2014-12-16 15:20:43.316104"], ["user_id", 7]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."parent_email" = 'shyann@boscoheller.us' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("child_gender", "child_name", "created_at", "favorite_color", "parent_email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["child_gender", "M"], ["child_name", "Lambert"], ["created_at", "2014-12-16 15:20:43.392705"], ["favorite_color", "blue"], ["parent_email", "shyann@boscoheller.us"], ["password_digest", "$2a$10$4i4xMEuwToPR0vpcUemCHe6WYHa8Dzkrm9JkZp.dVf/iYI2szOQx6"], ["updated_at", "2014-12-16 15:20:43.392705"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bears" ("created_at", "energy", "gender", "happiness", "hunger", "name", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["created_at", "2014-12-16 15:20:43.394953"], ["energy", 100], ["gender", "F"], ["happiness", 100], ["hunger", 100], ["name", "Astrid"], ["updated_at", "2014-12-16 15:20:43.394953"], ["user_id", 8]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:43.397431"], ["keyword", "whale"], ["updated_at", "2014-12-16 15:20:43.397431"], ["user_id", 8]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-12-16 15:20:43.399850"], ["keyword", "magic"], ["updated_at", "2014-12-16 15:20:43.399850"], ["user_id", 8]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:43.401663"], ["keyword", "ice cream"], ["updated_at", "2014-12-16 15:20:43.401663"], ["user_id", 8]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."parent_email" = 'adrianna@damorebrekke.com' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("child_gender", "child_name", "created_at", "favorite_color", "parent_email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["child_gender", "M"], ["child_name", "Aron"], ["created_at", "2014-12-16 15:20:43.478133"], ["favorite_color", "blue"], ["parent_email", "adrianna@damorebrekke.com"], ["password_digest", "$2a$10$aMRBrnVUm8bFQqxKzUFm7OweUfxWTwofO.QnNSRf3MBFzIVYoFFAq"], ["updated_at", "2014-12-16 15:20:43.478133"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "bears" ("created_at", "energy", "gender", "happiness", "hunger", "name", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["created_at", "2014-12-16 15:20:43.480306"], ["energy", 100], ["gender", "F"], ["happiness", 100], ["hunger", 100], ["name", "Coy"], ["updated_at", "2014-12-16 15:20:43.480306"], ["user_id", 9]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:43.482244"], ["keyword", "smile"], ["updated_at", "2014-12-16 15:20:43.482244"], ["user_id", 9]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-12-16 15:20:43.484195"], ["keyword", "panda"], ["updated_at", "2014-12-16 15:20:43.484195"], ["user_id", 9]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:43.485828"], ["keyword", "magic"], ["updated_at", "2014-12-16 15:20:43.485828"], ["user_id", 9]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."parent_email" = 'jonas@sporer.ca' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("child_gender", "child_name", "created_at", "favorite_color", "parent_email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["child_gender", "F"], ["child_name", "Antonina"], ["created_at", "2014-12-16 15:20:43.562638"], ["favorite_color", "green"], ["parent_email", "jonas@sporer.ca"], ["password_digest", "$2a$10$JKzio9GwKqBZN1LwyZohMemp0G06695xkqEOtuZdX3bvdFu7gwtha"], ["updated_at", "2014-12-16 15:20:43.562638"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bears" ("created_at", "energy", "gender", "happiness", "hunger", "name", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["created_at", "2014-12-16 15:20:43.564824"], ["energy", 100], ["gender", "M"], ["happiness", 100], ["hunger", 100], ["name", "Clinton"], ["updated_at", "2014-12-16 15:20:43.564824"], ["user_id", 10]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:43.566908"], ["keyword", "panda"], ["updated_at", "2014-12-16 15:20:43.566908"], ["user_id", 10]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-12-16 15:20:43.568911"], ["keyword", "smile"], ["updated_at", "2014-12-16 15:20:43.568911"], ["user_id", 10]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:43.570868"], ["keyword", "smile"], ["updated_at", "2014-12-16 15:20:43.570868"], ["user_id", 10]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."parent_email" = 'ashlynn_dubuque@grady.info' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("child_gender", "child_name", "created_at", "favorite_color", "parent_email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["child_gender", "F"], ["child_name", "Domenica"], ["created_at", "2014-12-16 15:20:43.648467"], ["favorite_color", "blue"], ["parent_email", "ashlynn_dubuque@grady.info"], ["password_digest", "$2a$10$ZJnu04UeXIMsNW9AD/0k1u0imTbc39c17vQYYf23gFyVM42fo5gDO"], ["updated_at", "2014-12-16 15:20:43.648467"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "bears" ("created_at", "energy", "gender", "happiness", "hunger", "name", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["created_at", "2014-12-16 15:20:43.651056"], ["energy", 100], ["gender", "F"], ["happiness", 100], ["hunger", 100], ["name", "Nikki"], ["updated_at", "2014-12-16 15:20:43.651056"], ["user_id", 11]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:43.653058"], ["keyword", "whale"], ["updated_at", "2014-12-16 15:20:43.653058"], ["user_id", 11]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-12-16 15:20:43.654815"], ["keyword", "zebra"], ["updated_at", "2014-12-16 15:20:43.654815"], ["user_id", 11]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:43.656482"], ["keyword", "whale"], ["updated_at", "2014-12-16 15:20:43.656482"], ["user_id", 11]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."parent_email" = 'leslie.boyle@ullrich.biz' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("child_gender", "child_name", "created_at", "favorite_color", "parent_email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["child_gender", "F"], ["child_name", "Reece"], ["created_at", "2014-12-16 15:20:43.734371"], ["favorite_color", "yellow"], ["parent_email", "leslie.boyle@ullrich.biz"], ["password_digest", "$2a$10$Mz.GaAS/Kq6cHykp8pwOMuHYa7bG24MWDDQ6kYRWk87jsNnsL394a"], ["updated_at", "2014-12-16 15:20:43.734371"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "bears" ("created_at", "energy", "gender", "happiness", "hunger", "name", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["created_at", "2014-12-16 15:20:43.736507"], ["energy", 100], ["gender", "M"], ["happiness", 100], ["hunger", 100], ["name", "Johnson"], ["updated_at", "2014-12-16 15:20:43.736507"], ["user_id", 12]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:43.738340"], ["keyword", "smile"], ["updated_at", "2014-12-16 15:20:43.738340"], ["user_id", 12]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-12-16 15:20:43.740215"], ["keyword", "panda"], ["updated_at", "2014-12-16 15:20:43.740215"], ["user_id", 12]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:43.741801"], ["keyword", "whale"], ["updated_at", "2014-12-16 15:20:43.741801"], ["user_id", 12]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."parent_email" = 'baby.gislason@sanford.co.uk' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("child_gender", "child_name", "created_at", "favorite_color", "parent_email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["child_gender", "F"], ["child_name", "Mattie"], ["created_at", "2014-12-16 15:20:43.818733"], ["favorite_color", "blue"], ["parent_email", "baby.gislason@sanford.co.uk"], ["password_digest", "$2a$10$lK.NCELpwotjKfLdQsZkluTqAY9mXtl0hfGi3wCPD7hpdS3cYNI6e"], ["updated_at", "2014-12-16 15:20:43.818733"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bears" ("created_at", "energy", "gender", "happiness", "hunger", "name", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["created_at", "2014-12-16 15:20:43.820862"], ["energy", 100], ["gender", "F"], ["happiness", 100], ["hunger", 100], ["name", "Willard"], ["updated_at", "2014-12-16 15:20:43.820862"], ["user_id", 13]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:43.822853"], ["keyword", "zebra"], ["updated_at", "2014-12-16 15:20:43.822853"], ["user_id", 13]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-12-16 15:20:43.824528"], ["keyword", "smile"], ["updated_at", "2014-12-16 15:20:43.824528"], ["user_id", 13]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:43.826173"], ["keyword", "smile"], ["updated_at", "2014-12-16 15:20:43.826173"], ["user_id", 13]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."parent_email" = 'aletha@funk.biz' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("child_gender", "child_name", "created_at", "favorite_color", "parent_email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["child_gender", "F"], ["child_name", "Kevin"], ["created_at", "2014-12-16 15:20:43.903413"], ["favorite_color", "red"], ["parent_email", "aletha@funk.biz"], ["password_digest", "$2a$10$qYxRPyF9V/ZiL4qSQXSCZuPUYRwbIRecY0.tuky3FMfVzqjxeYLeG"], ["updated_at", "2014-12-16 15:20:43.903413"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bears" ("created_at", "energy", "gender", "happiness", "hunger", "name", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["created_at", "2014-12-16 15:20:43.905906"], ["energy", 100], ["gender", "F"], ["happiness", 100], ["hunger", 100], ["name", "Carroll"], ["updated_at", "2014-12-16 15:20:43.905906"], ["user_id", 14]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:43.908135"], ["keyword", "smile"], ["updated_at", "2014-12-16 15:20:43.908135"], ["user_id", 14]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-12-16 15:20:43.909891"], ["keyword", "whale"], ["updated_at", "2014-12-16 15:20:43.909891"], ["user_id", 14]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:43.911580"], ["keyword", "whale"], ["updated_at", "2014-12-16 15:20:43.911580"], ["user_id", 14]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."parent_email" = 'alejandrin.rath@torprowe.ca' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("child_gender", "child_name", "created_at", "favorite_color", "parent_email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["child_gender", "M"], ["child_name", "Abigale"], ["created_at", "2014-12-16 15:20:43.988081"], ["favorite_color", "yellow"], ["parent_email", "alejandrin.rath@torprowe.ca"], ["password_digest", "$2a$10$P/8omyeHZgaC5PBhrEeXN.2Asi7BxWlnCuy04qgbtSu0CY5J8y5jy"], ["updated_at", "2014-12-16 15:20:43.988081"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bears" ("created_at", "energy", "gender", "happiness", "hunger", "name", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["created_at", "2014-12-16 15:20:43.990632"], ["energy", 100], ["gender", "F"], ["happiness", 100], ["hunger", 100], ["name", "Humberto"], ["updated_at", "2014-12-16 15:20:43.990632"], ["user_id", 15]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:43.992793"], ["keyword", "smile"], ["updated_at", "2014-12-16 15:20:43.992793"], ["user_id", 15]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-12-16 15:20:43.994676"], ["keyword", "magic"], ["updated_at", "2014-12-16 15:20:43.994676"], ["user_id", 15]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:43.996404"], ["keyword", "whale"], ["updated_at", "2014-12-16 15:20:43.996404"], ["user_id", 15]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."parent_email" = 'elna_rempel@mills.biz' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("child_gender", "child_name", "created_at", "favorite_color", "parent_email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["child_gender", "M"], ["child_name", "Osvaldo"], ["created_at", "2014-12-16 15:20:44.072781"], ["favorite_color", "yellow"], ["parent_email", "elna_rempel@mills.biz"], ["password_digest", "$2a$10$pF1LbGpp7TZnhQdV/b1AOuWItAZ4b/n3kaDrD6G6qTi1clzFSYhaO"], ["updated_at", "2014-12-16 15:20:44.072781"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "bears" ("created_at", "energy", "gender", "happiness", "hunger", "name", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["created_at", "2014-12-16 15:20:44.075160"], ["energy", 100], ["gender", "M"], ["happiness", 100], ["hunger", 100], ["name", "Tressa"], ["updated_at", "2014-12-16 15:20:44.075160"], ["user_id", 16]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:44.077503"], ["keyword", "whale"], ["updated_at", "2014-12-16 15:20:44.077503"], ["user_id", 16]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-12-16 15:20:44.079521"], ["keyword", "whale"], ["updated_at", "2014-12-16 15:20:44.079521"], ["user_id", 16]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:44.081059"], ["keyword", "panda"], ["updated_at", "2014-12-16 15:20:44.081059"], ["user_id", 16]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."parent_email" = 'lizzie@williamsonrowe.us' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("child_gender", "child_name", "created_at", "favorite_color", "parent_email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["child_gender", "F"], ["child_name", "Korbin"], ["created_at", "2014-12-16 15:20:44.157765"], ["favorite_color", "red"], ["parent_email", "lizzie@williamsonrowe.us"], ["password_digest", "$2a$10$Y3GApQnTt8ZAzVNKJ4vTbOB5nW4sJm/YmRW8BagWDVZu3w2SZgCw6"], ["updated_at", "2014-12-16 15:20:44.157765"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "bears" ("created_at", "energy", "gender", "happiness", "hunger", "name", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["created_at", "2014-12-16 15:20:44.159955"], ["energy", 100], ["gender", "M"], ["happiness", 100], ["hunger", 100], ["name", "Jaunita"], ["updated_at", "2014-12-16 15:20:44.159955"], ["user_id", 17]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:44.162095"], ["keyword", "ice cream"], ["updated_at", "2014-12-16 15:20:44.162095"], ["user_id", 17]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-12-16 15:20:44.163852"], ["keyword", "smile"], ["updated_at", "2014-12-16 15:20:44.163852"], ["user_id", 17]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:44.165640"], ["keyword", "panda"], ["updated_at", "2014-12-16 15:20:44.165640"], ["user_id", 17]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."parent_email" = 'gussie@mills.biz' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("child_gender", "child_name", "created_at", "favorite_color", "parent_email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["child_gender", "M"], ["child_name", "Gaetano"], ["created_at", "2014-12-16 15:20:44.242581"], ["favorite_color", "yellow"], ["parent_email", "gussie@mills.biz"], ["password_digest", "$2a$10$H3i3/LU8FEBoeY/2o9ruQ.i/pazyUFUG9ZPZ5XDfo.3KrHZh5fFjq"], ["updated_at", "2014-12-16 15:20:44.242581"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "bears" ("created_at", "energy", "gender", "happiness", "hunger", "name", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["created_at", "2014-12-16 15:20:44.244444"], ["energy", 100], ["gender", "F"], ["happiness", 100], ["hunger", 100], ["name", "Bailee"], ["updated_at", "2014-12-16 15:20:44.244444"], ["user_id", 18]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:44.246134"], ["keyword", "ice cream"], ["updated_at", "2014-12-16 15:20:44.246134"], ["user_id", 18]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-12-16 15:20:44.247777"], ["keyword", "ice cream"], ["updated_at", "2014-12-16 15:20:44.247777"], ["user_id", 18]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:44.249440"], ["keyword", "magic"], ["updated_at", "2014-12-16 15:20:44.249440"], ["user_id", 18]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."parent_email" = 'alba_kertzmann@harvey.biz' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("child_gender", "child_name", "created_at", "favorite_color", "parent_email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["child_gender", "F"], ["child_name", "Mathias"], ["created_at", "2014-12-16 15:20:44.325964"], ["favorite_color", "red"], ["parent_email", "alba_kertzmann@harvey.biz"], ["password_digest", "$2a$10$0EzCzjdvOPDimOqa8ZtckO34BxxQw8MjETjbeUFCudXuWJOtT20ZO"], ["updated_at", "2014-12-16 15:20:44.325964"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bears" ("created_at", "energy", "gender", "happiness", "hunger", "name", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["created_at", "2014-12-16 15:20:44.328023"], ["energy", 100], ["gender", "M"], ["happiness", 100], ["hunger", 100], ["name", "Eloise"], ["updated_at", "2014-12-16 15:20:44.328023"], ["user_id", 19]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:44.329948"], ["keyword", "magic"], ["updated_at", "2014-12-16 15:20:44.329948"], ["user_id", 19]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-12-16 15:20:44.331724"], ["keyword", "whale"], ["updated_at", "2014-12-16 15:20:44.331724"], ["user_id", 19]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "searches" ("created_at", "keyword", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-12-16 15:20:44.333662"], ["keyword", "magic"], ["updated_at", "2014-12-16 15:20:44.333662"], ["user_id", 19]]
+  [1m[35m (0.5ms)[0m  COMMIT
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-16 10:26:18 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ApplicationController#index as HTML
+  Rendered text template within layouts/application (0.0ms)
+Completed 200 OK in 108ms (Views: 90.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-16 10:26:18 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-16 10:26:18 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-16 10:26:18 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-16 10:26:18 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-16 10:26:18 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-16 10:26:19 -0500
+Processing by ApplicationController#index as HTML
+  Rendered text template within layouts/application (0.0ms)
+Completed 200 OK in 29ms (Views: 28.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-16 10:26:19 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-16 10:26:19 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-16 10:26:19 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-16 10:26:19 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-16 10:26:19 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-16 10:26:20 -0500
+Processing by ApplicationController#index as HTML
+  Rendered text template within layouts/application (0.0ms)
+Completed 200 OK in 27ms (Views: 26.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-16 10:26:20 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-16 10:26:20 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-16 10:26:20 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-16 10:26:20 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-16 10:26:20 -0500
+
+
+Started POST "/sessions" for 127.0.0.1 at 2014-12-16 10:26:27 -0500
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"FbDfiNnkrBgaDMkhWtqotL0dIBF2xY6m7BLxyRlG/wA=", "parent_email"=>"abraham@weissnatturner.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."parent_email" = 'abraham@weissnatturner.com' LIMIT 1
+Completed 200 OK in 118ms (Views: 0.7ms | ActiveRecord: 2.9ms)
