@@ -22,6 +22,7 @@ while i < 20 do
 	user.child_name = Faker::Name.first_name()
 	user.child_gender = ["M", "F"].sample
 	user.favorite_color = ["red", "yellow", "green", "blue"].sample
+	user.save()
 
 	bear = Bear.new()
 	bear.name = Faker::Name.first_name()
@@ -30,11 +31,13 @@ while i < 20 do
 	bear.happiness = 100
 	bear.energy = 100
 	bear.user_id = i
+	bear.save()
 
 	(1..3).each do
 		search = Search.new()
 		search.user_id = i
-		search.input = ["panda", "whale", "zebra", "ice cream", "magic", "smile"].sample
+		search.keyword = ["panda", "whale", "zebra", "ice cream", "magic", "smile"].sample
+		search.save()
 	end
 
 	i += 1
