@@ -7,8 +7,18 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<div id="login">
+		<h3>Log In</h3>
+		<%= form_tag sessions_path do %>
+		<%= label_tag :parent_email %>
+		<%= text_field_tag :parent_email %>
 
-<%= yield %>
+		<%= label_tag :password %>
+		<%= password_field_tag :password %>
+
+		<%= submit_tag "Login" %>
+		<% end %>
+	<div>
 
 </body>
 </html>

@@ -1,5 +1,5 @@
 class Search < ActiveRecord::Base
 	belongs_to :user
-
-	validates_presence_of :user_id, :input
+	has_many :memories,  dependent: :destroy
+	validates_presence_of :user_id, :keyword
 end

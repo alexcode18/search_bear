@@ -28,21 +28,16 @@ ActiveRecord::Schema.define(version: 20141215171858) do
   end
 
   create_table "memories", force: true do |t|
-    t.text     "all"
-    t.text     "transportation"
-    t.text     "fruits"
-    t.text     "vegetables"
-    t.text     "animals"
-    t.text     "letters"
-    t.text     "numbers"
-    t.text     "people"
+    t.string   "category"
+    t.string   "image_url"
     t.integer  "bear_id"
+    t.integer  "search_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "searches", force: true do |t|
-    t.string   "input"
+    t.string   "keyword"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
