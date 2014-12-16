@@ -14,3 +14,37 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(function(){
+	$('body').on('click', '#login_submit', fetchUserData);
+
+});
+
+function fetchUserData() {
+
+	var password = $('#login_password').val('');
+	var email = $('#login_email').val('');
+	console.log(email);
+
+	var newSession = {
+		session: {
+			parent_email: email,
+			password: password
+		}
+	};
+
+	$.post('/sessions', newSession).done(function(data){
+		data.forEach(renderUser);
+	});
+}
+
+
+function renderUser(currentUser){
+	var UserID = currentUser.id;
+	var user = currentUser.child_name;
+	var favoriteColor = currentUser.favorite_color;
+
+	var userDiv = $('<div>').text(UserID).text(user).text(favoriteColor);
+
+	userDiv.appendTo('body');
+};
