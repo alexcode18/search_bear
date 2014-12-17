@@ -5122,3 +5122,389 @@ Processing by SessionsController#create as */*
   [1m[36mMemory Load (0.2ms)[0m  [1mSELECT "memories".* FROM "memories"  WHERE "memories"."bear_id" = $1[0m  [["bear_id", 2]]
   [1m[35mSearch Load (0.2ms)[0m  SELECT "searches".* FROM "searches"  WHERE "searches"."user_id" = $1  [["user_id", 1]]
 Completed 200 OK in 79ms (Views: 0.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-17 12:14:09 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (70.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ApplicationController#index as HTML
+  Rendered text template within layouts/application (0.0ms)
+Completed 200 OK in 246ms (Views: 217.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-17 12:14:12 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-17 12:14:12 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-17 12:14:12 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-17 12:14:12 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-17 12:14:12 -0500
+
+
+Started POST "/sessions" for 127.0.0.1 at 2014-12-17 12:14:40 -0500
+Processing by SessionsController#create as */*
+  Parameters: {"parent_email"=>"jonas_flatley@miller.co.uk", "password"=>"[FILTERED]"}
+  [1m[35mUser Load (46.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."parent_email" = 'jonas_flatley@miller.co.uk' LIMIT 1
+  [1m[36mBear Load (21.1ms)[0m  [1mSELECT "bears".* FROM "bears"  WHERE "bears"."user_id" = $1[0m  [["user_id", 6]]
+  [1m[35mMemory Load (14.0ms)[0m  SELECT "memories".* FROM "memories"  WHERE "memories"."bear_id" = $1  [["bear_id", 7]]
+  [1m[36mSearch Load (29.1ms)[0m  [1mSELECT "searches".* FROM "searches"  WHERE "searches"."user_id" = $1[0m  [["user_id", 6]]
+Completed 200 OK in 386ms (Views: 0.1ms | ActiveRecord: 142.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-17 12:17:57 -0500
+Processing by ApplicationController#index as HTML
+  Rendered text template within layouts/application (0.0ms)
+Completed 200 OK in 44ms (Views: 43.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-17 12:17:57 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-17 12:17:57 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-17 12:17:57 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-17 12:17:57 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-17 12:17:57 -0500
+
+
+Started POST "/sessions" for 127.0.0.1 at 2014-12-17 12:18:03 -0500
+Processing by SessionsController#create as */*
+  Parameters: {"parent_email"=>"jonas_flatley@miller.co.uk", "password"=>"[FILTERED]"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."parent_email" = 'jonas_flatley@miller.co.uk' LIMIT 1
+  [1m[36mBear Load (0.4ms)[0m  [1mSELECT "bears".* FROM "bears"  WHERE "bears"."user_id" = $1[0m  [["user_id", 6]]
+  [1m[35mMemory Load (0.3ms)[0m  SELECT "memories".* FROM "memories"  WHERE "memories"."bear_id" = $1  [["bear_id", 7]]
+  [1m[36mSearch Load (0.3ms)[0m  [1mSELECT "searches".* FROM "searches"  WHERE "searches"."user_id" = $1[0m  [["user_id", 6]]
+Completed 200 OK in 84ms (Views: 0.1ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-17 12:20:21 -0500
+Processing by ApplicationController#index as HTML
+  Rendered text template within layouts/application (0.0ms)
+Completed 200 OK in 61ms (Views: 60.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-17 12:20:21 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-17 12:20:21 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-17 12:20:21 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-17 12:20:21 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-17 12:20:21 -0500
+
+
+Started POST "/sessions" for 127.0.0.1 at 2014-12-17 12:20:27 -0500
+Processing by SessionsController#create as */*
+  Parameters: {"parent_email"=>"jonas_flatley@miller.co.uk", "password"=>"[FILTERED]"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."parent_email" = 'jonas_flatley@miller.co.uk' LIMIT 1
+  [1m[36mBear Load (0.4ms)[0m  [1mSELECT "bears".* FROM "bears"  WHERE "bears"."user_id" = $1[0m  [["user_id", 6]]
+  [1m[35mMemory Load (0.3ms)[0m  SELECT "memories".* FROM "memories"  WHERE "memories"."bear_id" = $1  [["bear_id", 7]]
+  [1m[36mSearch Load (0.2ms)[0m  [1mSELECT "searches".* FROM "searches"  WHERE "searches"."user_id" = $1[0m  [["user_id", 6]]
+Completed 200 OK in 80ms (Views: 0.1ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-17 12:34:35 -0500
+Processing by ApplicationController#index as HTML
+  Rendered text template within layouts/application (0.0ms)
+Completed 200 OK in 39ms (Views: 38.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-17 12:34:35 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-17 12:34:35 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-17 12:34:35 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-17 12:34:35 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-17 12:34:35 -0500
+
+
+Started POST "/sessions" for 127.0.0.1 at 2014-12-17 12:34:43 -0500
+Processing by SessionsController#create as */*
+  Parameters: {"parent_email"=>"jonas_flatley@miller.co.uk", "password"=>"[FILTERED]"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."parent_email" = 'jonas_flatley@miller.co.uk' LIMIT 1
+  [1m[36mBear Load (0.4ms)[0m  [1mSELECT "bears".* FROM "bears"  WHERE "bears"."user_id" = $1[0m  [["user_id", 6]]
+  [1m[35mMemory Load (0.4ms)[0m  SELECT "memories".* FROM "memories"  WHERE "memories"."bear_id" = $1  [["bear_id", 7]]
+  [1m[36mSearch Load (0.4ms)[0m  [1mSELECT "searches".* FROM "searches"  WHERE "searches"."user_id" = $1[0m  [["user_id", 6]]
+Completed 200 OK in 79ms (Views: 0.1ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-17 12:35:28 -0500
+Processing by ApplicationController#index as HTML
+  Rendered text template within layouts/application (0.0ms)
+Completed 200 OK in 40ms (Views: 39.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-17 12:35:28 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-17 12:35:28 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-17 12:35:28 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-17 12:35:28 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-17 12:35:28 -0500
+
+
+Started POST "/sessions" for 127.0.0.1 at 2014-12-17 12:35:37 -0500
+Processing by SessionsController#create as */*
+  Parameters: {"parent_email"=>"jonas_flatley@miller.co.uk", "password"=>"[FILTERED]"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."parent_email" = 'jonas_flatley@miller.co.uk' LIMIT 1
+  [1m[36mBear Load (0.6ms)[0m  [1mSELECT "bears".* FROM "bears"  WHERE "bears"."user_id" = $1[0m  [["user_id", 6]]
+  [1m[35mMemory Load (0.5ms)[0m  SELECT "memories".* FROM "memories"  WHERE "memories"."bear_id" = $1  [["bear_id", 7]]
+  [1m[36mSearch Load (0.2ms)[0m  [1mSELECT "searches".* FROM "searches"  WHERE "searches"."user_id" = $1[0m  [["user_id", 6]]
+Completed 200 OK in 81ms (Views: 0.1ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-17 12:37:22 -0500
+Processing by ApplicationController#index as HTML
+  Rendered text template within layouts/application (0.0ms)
+Completed 200 OK in 38ms (Views: 37.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-17 12:37:22 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-17 12:37:22 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-17 12:37:22 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-17 12:37:22 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-17 12:37:22 -0500
+
+
+Started POST "/sessions" for 127.0.0.1 at 2014-12-17 12:37:27 -0500
+Processing by SessionsController#create as */*
+  Parameters: {"parent_email"=>"jonas_flatley@miller.co.uk", "password"=>"[FILTERED]"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."parent_email" = 'jonas_flatley@miller.co.uk' LIMIT 1
+  [1m[36mBear Load (0.4ms)[0m  [1mSELECT "bears".* FROM "bears"  WHERE "bears"."user_id" = $1[0m  [["user_id", 6]]
+  [1m[35mMemory Load (0.3ms)[0m  SELECT "memories".* FROM "memories"  WHERE "memories"."bear_id" = $1  [["bear_id", 7]]
+  [1m[36mSearch Load (0.2ms)[0m  [1mSELECT "searches".* FROM "searches"  WHERE "searches"."user_id" = $1[0m  [["user_id", 6]]
+Completed 200 OK in 78ms (Views: 0.1ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-17 12:53:54 -0500
+Processing by ApplicationController#index as HTML
+  Rendered text template within layouts/application (0.0ms)
+Completed 200 OK in 26ms (Views: 25.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-17 12:53:54 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-17 12:53:54 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-17 12:53:54 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-17 12:53:54 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-17 12:53:54 -0500
+
+
+Started POST "/sessions" for 127.0.0.1 at 2014-12-17 12:54:00 -0500
+Processing by SessionsController#create as */*
+  Parameters: {"parent_email"=>"jonas_flatley@miller.co.uk", "password"=>"[FILTERED]"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."parent_email" = 'jonas_flatley@miller.co.uk' LIMIT 1
+  [1m[36mBear Load (0.4ms)[0m  [1mSELECT "bears".* FROM "bears"  WHERE "bears"."user_id" = $1[0m  [["user_id", 6]]
+  [1m[35mMemory Load (0.2ms)[0m  SELECT "memories".* FROM "memories"  WHERE "memories"."bear_id" = $1  [["bear_id", 7]]
+  [1m[36mSearch Load (0.4ms)[0m  [1mSELECT "searches".* FROM "searches"  WHERE "searches"."user_id" = $1[0m  [["user_id", 6]]
+Completed 200 OK in 80ms (Views: 0.2ms | ActiveRecord: 1.3ms)
+  [1m[36mBear Load (10.5ms)[0m  [1mSELECT  "bears".* FROM "bears"  WHERE "bears"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mBear Load (0.6ms)[0m  SELECT  "bears".* FROM "bears"  WHERE "bears"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (9.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 0]]
+  [1m[35mMemory Load (0.4ms)[0m  SELECT "memories".* FROM "memories"  WHERE "memories"."bear_id" = $1  [["bear_id", 1]]
+  [1m[36mBear Load (0.6ms)[0m  [1mSELECT  "bears".* FROM "bears"  WHERE "bears"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mBear Load (0.5ms)[0m  SELECT  "bears".* FROM "bears"  WHERE "bears"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMemory Load (0.4ms)[0m  SELECT "memories".* FROM "memories"  WHERE "memories"."bear_id" = $1  [["bear_id", 2]]
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-17 13:24:41 -0500
+Processing by ApplicationController#index as HTML
+  Rendered text template within layouts/application (0.0ms)
+Completed 200 OK in 73ms (Views: 72.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-17 13:24:41 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-17 13:24:41 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-17 13:24:41 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-17 13:24:41 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-17 13:24:41 -0500
+
+
+Started POST "/sessions" for 127.0.0.1 at 2014-12-17 13:24:54 -0500
+Processing by SessionsController#create as */*
+  Parameters: {"parent_email"=>"abraham@weissnatturner.com", "password"=>"[FILTERED]"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."parent_email" = 'abraham@weissnatturner.com' LIMIT 1
+  [1m[36mBear Load (0.3ms)[0m  [1mSELECT "bears".* FROM "bears"  WHERE "bears"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[35mMemory Load (0.3ms)[0m  SELECT "memories".* FROM "memories"  WHERE "memories"."bear_id" = $1  [["bear_id", 2]]
+  [1m[36mSearch Load (0.2ms)[0m  [1mSELECT "searches".* FROM "searches"  WHERE "searches"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 109ms (Views: 0.1ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/bears/2" for 127.0.0.1 at 2014-12-17 13:24:56 -0500
+Processing by BearsController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[35mBear Load (0.4ms)[0m  SELECT  "bears".* FROM "bears"  WHERE "bears"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMemory Load (0.2ms)[0m  SELECT "memories".* FROM "memories"  WHERE "memories"."bear_id" = $1  [["bear_id", 2]]
+Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-17 13:26:20 -0500
+Processing by ApplicationController#index as HTML
+  Rendered text template within layouts/application (0.0ms)
+Completed 200 OK in 40ms (Views: 39.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-17 13:26:21 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-17 13:26:21 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-17 13:26:21 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-17 13:26:21 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-17 13:26:21 -0500
+
+
+Started POST "/sessions" for 127.0.0.1 at 2014-12-17 13:26:27 -0500
+Processing by SessionsController#create as */*
+  Parameters: {"parent_email"=>"abraham@weissnatturner.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."parent_email" = 'abraham@weissnatturner.com' LIMIT 1[0m
+  [1m[35mBear Load (0.3ms)[0m  SELECT "bears".* FROM "bears"  WHERE "bears"."user_id" = $1  [["user_id", 1]]
+  [1m[36mMemory Load (0.2ms)[0m  [1mSELECT "memories".* FROM "memories"  WHERE "memories"."bear_id" = $1[0m  [["bear_id", 2]]
+  [1m[35mSearch Load (0.2ms)[0m  SELECT "searches".* FROM "searches"  WHERE "searches"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 78ms (Views: 0.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/bears/2" for 127.0.0.1 at 2014-12-17 13:26:28 -0500
+Processing by BearsController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mBear Load (0.4ms)[0m  [1mSELECT  "bears".* FROM "bears"  WHERE "bears"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMemory Load (0.2ms)[0m  [1mSELECT "memories".* FROM "memories"  WHERE "memories"."bear_id" = $1[0m  [["bear_id", 2]]
+Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-17 13:27:52 -0500
+Processing by ApplicationController#index as HTML
+  Rendered text template within layouts/application (0.0ms)
+Completed 200 OK in 50ms (Views: 49.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-17 13:27:52 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-17 13:27:52 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-17 13:27:52 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-17 13:27:52 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-17 13:27:52 -0500
+
+
+Started POST "/sessions" for 127.0.0.1 at 2014-12-17 13:27:58 -0500
+Processing by SessionsController#create as */*
+  Parameters: {"parent_email"=>"abraham@weissnatturner.com", "password"=>"[FILTERED]"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."parent_email" = 'abraham@weissnatturner.com' LIMIT 1
+  [1m[36mBear Load (0.3ms)[0m  [1mSELECT "bears".* FROM "bears"  WHERE "bears"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[35mMemory Load (0.3ms)[0m  SELECT "memories".* FROM "memories"  WHERE "memories"."bear_id" = $1  [["bear_id", 2]]
+  [1m[36mSearch Load (0.2ms)[0m  [1mSELECT "searches".* FROM "searches"  WHERE "searches"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 78ms (Views: 0.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/bears/2" for 127.0.0.1 at 2014-12-17 13:27:59 -0500
+Processing by BearsController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[35mBear Load (0.4ms)[0m  SELECT  "bears".* FROM "bears"  WHERE "bears"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMemory Load (0.5ms)[0m  SELECT "memories".* FROM "memories"  WHERE "memories"."bear_id" = $1  [["bear_id", 2]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-17 14:56:10 -0500
+Processing by ApplicationController#index as HTML
+  Rendered text template within layouts/application (0.0ms)
+Completed 200 OK in 133ms (Views: 131.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-17 14:56:10 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-17 14:56:10 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-17 14:56:10 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-17 14:56:10 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-17 14:56:10 -0500
+
+
+Started POST "/sessions" for 127.0.0.1 at 2014-12-17 14:56:23 -0500
+Processing by SessionsController#create as */*
+  Parameters: {"parent_email"=>"abraham@weissnatturner.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."parent_email" = 'abraham@weissnatturner.com' LIMIT 1[0m
+  [1m[35mBear Load (0.3ms)[0m  SELECT "bears".* FROM "bears"  WHERE "bears"."user_id" = $1  [["user_id", 1]]
+  [1m[36mMemory Load (0.2ms)[0m  [1mSELECT "memories".* FROM "memories"  WHERE "memories"."bear_id" = $1[0m  [["bear_id", 2]]
+  [1m[35mSearch Load (0.3ms)[0m  SELECT "searches".* FROM "searches"  WHERE "searches"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 121ms (Views: 0.1ms | ActiveRecord: 6.7ms)
+
+
+Started GET "/bears/2" for 127.0.0.1 at 2014-12-17 14:56:24 -0500
+Processing by BearsController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mBear Load (0.5ms)[0m  [1mSELECT  "bears".* FROM "bears"  WHERE "bears"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMemory Load (0.3ms)[0m  [1mSELECT "memories".* FROM "memories"  WHERE "memories"."bear_id" = $1[0m  [["bear_id", 2]]
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 1.1ms)
