@@ -21,30 +21,41 @@ $(function(){
 });
 
 function fetchUserData() {
-
-	var password = $('#login_password').val('');
-	var email = $('#login_email').val('');
-	console.log(email);
+$('input[name="title"]').val()
+	var password = $('input[name="login_password"]').val();
+	var email = $('input[name="login_email"]').val();
 
 	var newSession = {
-		session: {
-			parent_email: email,
-			password: password
-		}
+		parent_email: email,
+		password: password
 	};
 
-	$.post('/sessions', newSession).done(function(data){
-		data.forEach(renderUser);
-	});
+	$.post('/sessions', newSession).done(renderSession);
 }
 
 
-function renderUser(currentUser){
-	var UserID = currentUser.id;
-	var user = currentUser.child_name;
+function renderSession(currentUser){
+	var userID = currentUser.id;
+	var userName = currentUser.child_name;
 	var favoriteColor = currentUser.favorite_color;
-
-	var userDiv = $('<div>').text(UserID).text(user).text(favoriteColor);
-
-	userDiv.appendTo('body');
+	var bears = currentUser.bears;
+	var bearBox = $('<div>').text(getBears(bears));
+	var bearImage = $('<img>').attr('src', 'http://i676.photobucket.com/albums/vv122/nick_emotics/cute-polar-bear-cub-sitting-on-snow.jpg');
+	var userDiv = $('<div>').text(userID + ", " + userName + ", " + favoriteColor);
+	$('body').append(bearImage).append(userDiv).append(bearBox);
+	$('#login').empty();
 };
+
+function getBears(bears){
+	var bearList = [];
+	for (var i = 0; i < bears.length; i++) {
+		var name = bears[i].name;
+		console.log(name);
+		bearList.push(name);
+	}
+	var bearString = bearList.join(', ');
+	console.log(bearString);
+	return bearString;
+}
+
+
