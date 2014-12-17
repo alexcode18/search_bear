@@ -6,7 +6,7 @@ class BearsController < ApplicationController
 
 	def show
 		@bear = Bear.find(params[:id])
-		render json: @bear
+		render json: @bear.to_json(include: [:user, :memories])
 	end
 
 	def create

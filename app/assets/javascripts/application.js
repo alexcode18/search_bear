@@ -17,7 +17,7 @@
 
 $(function(){
 	$('body').on('click', '#login_submit', fetchUserData);
-
+	$('body').on('click', '.getBearButton', renderBearScreen);
 });
 
 function fetchUserData() {
@@ -36,26 +36,41 @@ $('input[name="title"]').val()
 
 function renderSession(currentUser){
 	var userID = currentUser.id;
-	var userName = currentUser.child_name;
-	var favoriteColor = currentUser.favorite_color;
+	
 	var bears = currentUser.bears;
-	var bearBox = $('<div>').text(getBears(bears));
-	var bearImage = $('<img>').attr('src', 'http://i676.photobucket.com/albums/vv122/nick_emotics/cute-polar-bear-cub-sitting-on-snow.jpg');
-	var userDiv = $('<div>').text(userID + ", " + userName + ", " + favoriteColor);
-	$('body').append(bearImage).append(userDiv).append(bearBox);
-	$('#login').empty();
+	// var bearBox = $('<button>').text();
+	
+	$('#login').empty().append(getBears(bears));
 };
 
 function getBears(bears){
 	var bearList = [];
 	for (var i = 0; i < bears.length; i++) {
+
 		var name = bears[i].name;
 		console.log(name);
-		bearList.push(name);
+		var id = bears[i].id;
+		var bearButton = $('<button>').text(name)
+																	.addClass('getBearButton')
+																	.data('id', id);
+		$(bearButton).appendTo('#login');
 	}
-	var bearString = bearList.join(', ');
-	console.log(bearString);
-	return bearString;
 }
 
+function renderBearScreen() {
+	console.log('renderBearScreen');
+	var bearID = $(this).data('id');
+	$.get('/bears/' + bearID).done(bearScreenData);
+	
+}
+
+function bearScreenData(bear) {
+	$('#login').remove();
+	var userName = bear.user.child_name;
+	var bearImage = $('<img>').attr('src', 'http://i676.photobucket.com/albums/vv122/nick_emotics/cute-polar-bear-cub-sitting-on-snow.jpg');
+	var userDiv = $('<div>').text(userName + ", " + favoriteColor);
+	var favoriteColor = bear.user.favorite_color;
+
+	$('#bear_land').append(bearImage).append(userName).css('background', favoriteColor);
+}
 
