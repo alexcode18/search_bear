@@ -18,6 +18,7 @@
 $(function(){
 	$('body').on('click', '#login_submit', fetchUserData);
 	$('body').on('click', '.getBearButton', renderBearScreen);
+	$('body').on('click', '#search_button', search);
 });
 
 function fetchUserData() {
@@ -73,4 +74,23 @@ function bearScreenData(bear) {
 
 	$('#bear_land').append(bearImage).append(userName).css('background', favoriteColor);
 }
+
+function search(){
+	var value = $('input[name="search"]').val();
+	console.log(value);
+	var newSearch = {
+		search: value
+	};
+	console.log(newSearch);
+	$.post('/bings/', newSearch).done(function(searches){
+		console.log(searches);
+		for(var i = 0; i < searches.length; i++) {
+			console.log(searches[i]['DisplayUrl']);
+		}
+	});
+}
+
+
+
+
 
