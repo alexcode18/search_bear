@@ -18,6 +18,7 @@
 $(function(){
 	$('body').on('click', '#login_submit', fetchUserData);
 	$('body').on('click', '.getBearButton', renderBearScreen);
+	$('body').on('click', '#search_button', search);
 });
 
 function fetchUserData() {
@@ -73,4 +74,25 @@ function bearScreenData(bear) {
 
 	$('#bear_land').append(bearImage).append(userName).css('background', favoriteColor);
 }
+
+function search(){
+	$('#search_box').empty()
+	var value = $('input[name="search"]').val();
+	console.log(value);
+	var newSearch = {
+		search: value
+	};
+	console.log(newSearch);
+	$.post('/bings/', newSearch).done(function(searches){
+		console.log(searches.d.results[1].MediaUrl);
+		for(var i = 0; i < searches.d.results.length; i++) {
+			var searchImage = $('<img>').attr('src', searches.d.results[i].MediaUrl).data('search', value).addClass('search_image');
+			$('#search_box').append(searchImage);
+		}
+	});
+}
+
+
+
+
 

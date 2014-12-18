@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :create, :update, :destroy]
   resources :searches, only: [:index, :show, :create, :update, :destroy]
   resources :memories, only: [:index, :show, :create, :update, :destroy]
-
+  resources :bings
   get 'sessions/new' => 'sessions#new', as: 'login'
   post 'sessions' => 'sessions#create'
   delete 'sessions' => 'sessions#destroy'

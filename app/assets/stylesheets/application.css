@@ -39,3 +39,11 @@ img {
 	width: 300px;
 	display: inline-block;
 }
+
+.search_image {
+	max-width: 400px;
+	border-radius: 20px;
+	-o-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+}
