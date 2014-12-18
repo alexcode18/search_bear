@@ -76,6 +76,7 @@ function bearScreenData(bear) {
 }
 
 function search(){
+	$('#search_box').empty()
 	var value = $('input[name="search"]').val();
 	console.log(value);
 	var newSearch = {
@@ -83,9 +84,10 @@ function search(){
 	};
 	console.log(newSearch);
 	$.post('/bings/', newSearch).done(function(searches){
-		console.log(searches);
-		for(var i = 0; i < searches.length; i++) {
-			console.log(searches[i]['DisplayUrl']);
+		console.log(searches.d.results[1].MediaUrl);
+		for(var i = 0; i < searches.d.results.length; i++) {
+			var searchImage = $('<img>').attr('src', searches.d.results[i].MediaUrl).data('search', value).addClass('search_image');
+			$('#search_box').append(searchImage);
 		}
 	});
 }
