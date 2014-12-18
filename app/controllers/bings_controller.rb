@@ -1,5 +1,3 @@
-require 'HTTParty'
-
 class BingsController < ApplicationController
 
 	def create
