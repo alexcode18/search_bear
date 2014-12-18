@@ -23,6 +23,13 @@ img {
 	height: 300px;
 }
 
+header {
+	background: black;
+	color: yellow;
+	padding: 10px;
+	font-size: 14pt;
+}
+
 .container {
 	background: lightblue;
 	text-align: center;
@@ -37,13 +44,35 @@ img {
 
 #login {
 	width: 300px;
-	display: inline-block;
+	z-index: 10;
 }
 
 .search_image {
-	max-width: 400px;
+	width: 400px;
+	height: 200px;
+	overflow: hidden;
 	border-radius: 20px;
 	-o-border-radius: 20px;
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;
+}
+
+#bear_land {
+	float: left;
+}
+
+#search_zone {
+	width: 400px;
+	padding: 10px;
+	float: right;
+	background: darkblue;
+}
+
+#searches_box {
+	height: 600px;
+	overflow: scroll;
+}
+
+#search_bar_label {
+	display: none;
 }
