@@ -14,11 +14,15 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+var bearID;
 
 $(function(){
 	$('body').on('click', '#login_submit', fetchUserData);
 	$('body').on('click', '.getBearButton', renderBearScreen);
 	$('body').on('click', '#search_button', search);
+	$('body').on('mouseenter', '.search_image', searchImageHover);
+	$('body').on('mouseleave', '.search_image', mouseLeaveSearchImage);
+	$('body').on('click', '.move_to_bear', moveImageToMemory);
 });
 
 function fetchUserData() {
@@ -56,14 +60,14 @@ function getBears(bears){
 																	.data('id', id);
 		$(bearButton).appendTo('#login');
 	}
-}
+};
 
 function renderBearScreen() {
 	console.log('renderBearScreen');
-	var bearID = $(this).data('id');
+	bearID = $(this).data('id');
 	$.get('/bears/' + bearID).done(bearScreenData);
 	
-}
+};
 
 function bearScreenData(bear) {
 	$('#login').remove();
@@ -73,10 +77,10 @@ function bearScreenData(bear) {
 	var favoriteColor = bear.user.favorite_color;
 
 	$('#bear_land').append(bearImage).append(userName).css('background', favoriteColor);
-}
+};
 
 function search(){
-	$('#search_box').empty()
+	
 	var value = $('input[name="search"]').val();
 	console.log(value);
 	var newSearch = {
@@ -84,15 +88,49 @@ function search(){
 	};
 	console.log(newSearch);
 	$.post('/bings/', newSearch).done(function(searches){
+		$('#searches_box').empty();
 		console.log(searches.d.results[1].MediaUrl);
 		for(var i = 0; i < searches.d.results.length; i++) {
-			var searchImage = $('<img>').attr('src', searches.d.results[i].MediaUrl).data('search', value).addClass('search_image');
-			$('#search_box').append(searchImage);
+			var searchUrl = searches.d.results[i].MediaUrl;
+			var searchImage = $('<div>').css('background', 'url(' + searchUrl + ')').data('search', value).data('url', searchUrl).addClass('search_image');
+			$('#searches_box').append(searchImage);
 		}
 	});
+};
+
+function imageBox(url){
+	$('<div>').css('background', 'url(' + url + ')');
 }
 
+function searchImageHover(){
+	var url = $(this).data('url');
+	var keyword = $(this).data('search');
+	console.log(url + " " + keyword + " " + bearID);
+	var moveToBearButton = $('<button>').text('Move to Bear!').addClass('move_to_bear').data('url', url).data('keyword', keyword);
+	$(this).append(moveToBearButton);
+};
 
+function mouseLeaveSearchImage(){
+	$('.move_to_bear').remove();
+};
 
+function moveImageToMemory(){
+	var url = $(this).data('url');
+	var keyword = $(this).data('keyword');
+	console.log(url + " " + keyword + " ");
+	var newMemory = {
+		bear_id: bearID,
+		keyword: keyword,
+		image_url: url
+	};
 
+	$.post('/memories/', newMemory).done(fetchMemory);
+};
 
+function fetchMemory(memory){
+	var image = $('<img>').attr('src', memory.image_url).addClass('memory_image');
+	var keyword = $('').text(memory.keyword).addClass('memory_keyword');
+	console.log("fetching memory: " + image);
+	var memoryItem = $('<div>').append(image).append(keyword);
+	memoryItem.prependTo('#memory_box');
+};
