@@ -80,7 +80,6 @@ function bearScreenData(bear) {
 };
 
 function search(){
-	
 	var value = $('input[name="search"]').val();
 	console.log(value);
 	var newSearch = {
