@@ -1,4 +1,5 @@
 class MemoriesController < ApplicationController
+
 	def create
 		memory = Memory.new
 		memory[:bear_id] = params[:bear_id]

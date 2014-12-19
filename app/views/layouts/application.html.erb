@@ -7,9 +7,6 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<header>
-		<h1>Search Bear</h1>
-	</header>
 	<div id="login" class="container">
 		<h3>Log In</h3>
 		<label>email</label>
@@ -18,12 +15,17 @@
 		<input type="password" name="login_password" id="login_password"><br>
 		<button id="login_submit">submit</button>
 	</div>
+	<header>
+		<img src="http://upload.wikimedia.org/wikipedia/commons/0/09/White_paw_print.png" id="logo">
+		<h1>SEARCH BEAR</h1>
+	</header>
+	<span class="clearfix"></span>
 
 	<div id="bear_land">
 	</div>
 
 	<div id="search_zone">
-		<div>
+		<div id="search_bar">
 			<label id="search_bar_label">search</label>
 			<input type="text" name="search" placeholder="search">
 			<button id="search_button">search</button>
@@ -31,7 +33,7 @@
 		<div id="searches_box">
 		</div>
 	</div>
-
+	<span class="clearfix"></span>
 	<div id="memory_box">
 	</div>
 	<footer>
