@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 		user = User.find_by(parent_email: params[:parent_email])
 		if user && user.authenticate(params[:password])
 			session[:current_user_id] = user.id
-			render json: user.to_json(include: [{:bears => {:include => :memories}}, :searches])
+			render json: user.to_json(:include => :bears)
 		else
 			redirect_to root_path
 		end

@@ -26,7 +26,6 @@ $(function(){
 });
 
 function fetchUserData() {
-$('input[name="title"]').val()
 	var password = $('input[name="login_password"]').val();
 	var email = $('input[name="login_email"]').val();
 
@@ -66,17 +65,18 @@ function renderBearScreen() {
 	console.log('renderBearScreen');
 	bearID = $(this).data('id');
 	$.get('/bears/' + bearID).done(bearScreenData);
-	
 };
 
 function bearScreenData(bear) {
 	$('#login').remove();
 	var userName = bear.user.child_name;
-	var bearImage = $('<img>').attr('src', 'http://i676.photobucket.com/albums/vv122/nick_emotics/cute-polar-bear-cub-sitting-on-snow.jpg');
-	var userDiv = $('<div>').text(userName + ", " + favoriteColor);
+	var bearName = bear.name;
+	var bearImage = $('<div>').addClass('bear');
+	var userDiv = $('<div>').text('Hi, ' + userName + '! My name is ' + bearName + '.').addClass('container').addClass('bear_text');
 	var favoriteColor = bear.user.favorite_color;
-
-	$('#bear_land').append(bearImage).append(userName).css('background', favoriteColor);
+	bearMemories = bear.memories;
+	bearMemories.forEach(fetchMemory);
+	$('#bear_land').append(userDiv).append(bearImage);
 };
 
 function search(){
@@ -99,7 +99,7 @@ function search(){
 
 function imageBox(url){
 	$('<div>').css('background', 'url(' + url + ')');
-}
+};
 
 function searchImageHover(){
 	var url = $(this).data('url');
@@ -127,9 +127,10 @@ function moveImageToMemory(){
 };
 
 function fetchMemory(memory){
+	console.log(memory);
 	var image = $('<img>').attr('src', memory.image_url).addClass('memory_image');
-	var keyword = $('').text(memory.keyword).addClass('memory_keyword');
+	var keyword = $('<p>').text(memory.keyword).addClass('memory_keyword');
 	console.log("fetching memory: " + image);
-	var memoryItem = $('<div>').append(image).append(keyword);
+	var memoryItem = $('<div>').append(image).append(keyword).addClass('container').addClass('memory_item');
 	memoryItem.prependTo('#memory_box');
 };
