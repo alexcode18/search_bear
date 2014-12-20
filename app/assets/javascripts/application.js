@@ -134,3 +134,20 @@ function fetchMemory(memory){
 	var memoryItem = $('<div>').append(image).append(keyword).addClass('container').addClass('memory_item');
 	memoryItem.prependTo('#memory_box');
 };
+
+
+function changeColor(x,y){
+  var hue = x / parseInt($(window).width()) * 360;
+  var saturation = ",100%,"
+  var lightness = y / parseInt($(window).height()) * 100;
+  var hsl = "hsl("+hue+saturation+lightness+"%)";
+  return hsl;
+};
+
+function bearFeelingsCounter(bear) {
+	setInterval(function(){
+		bear.energy -= 1;
+		bear.happiness -= 1;
+		bear.hunger -= 1;
+	}, 1000);
+}
