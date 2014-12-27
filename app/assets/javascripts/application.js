@@ -15,18 +15,29 @@
 //= require turbolinks
 //= require_tree .
 var bearID;
+var lastSearch;
 
 $(function(){
+	$('#memory_drop').droppable({
+		accept: '.search_image',
+		hoverClass: 'red',
+		drop: function(event, ui) {
+			var drg = ui.helper;
+			moveImageToMemory(drg);
+			alert('dropped');
+		}
+	});
 	$('body').on('click', '#sign_up', renderSignUp);
 	$('body').on('click', '#signup_button', createUser);
 	$('body').on('click', '#submit_bear', createBear);
 	$('body').on('click', '#login_submit', fetchUserData);
 	$('body').on('click', '.getBearButton', renderBearScreen);
 	$('body').on('click', '#search_button', search);
-	$('body').on('mouseenter', '.search_image', searchImageHover);
-	$('body').on('mouseleave', '.search_image', mouseLeaveSearchImage);
-	$('body').on('click', '.move_to_bear', moveImageToMemory);
 	
+	// $('body').on('mouseenter', '.search_image', searchImageHover);
+	// $('body').on('mouseleave', '.search_image', mouseLeaveSearchImage);
+	$('body').on('mouseenter', '.search_image', searchImageDraggable);
+	// $('body').on('click', '.search_image', searchImagePosition);
 });
 
 function fetchUserData() {
@@ -213,8 +224,11 @@ function search(){
 		console.log(searches.d.results[1].MediaUrl);
 		for(var i = 0; i < searches.d.results.length; i++) {
 			var searchUrl = searches.d.results[i].MediaUrl;
-			var searchImage = $('<div>').css('background', 'url(' + searchUrl + ')').data('search', value).data('url', searchUrl).addClass('search_image');
-			$('#searches_box').append(searchImage);
+			if (searchUrl) {
+				var searchImage = $('<img>').attr('src', searchUrl).addClass('search_image');
+				lastSearch = value;
+				$('#searches_box').append(searchImage);
+			}	
 		}
 	});
 };
@@ -223,25 +237,25 @@ function imageBox(url){
 	$('<div>').css('background', 'url(' + url + ')');
 };
 
-function searchImageHover(){
-	var url = $(this).data('url');
-	var keyword = $(this).data('search');
-	console.log(url + " " + keyword + " " + bearID);
-	var moveToBearButton = $('<button>').text('Move to Bear!').addClass('move_to_bear').data('url', url).data('keyword', keyword);
-	$(this).append(moveToBearButton);
+function searchImageDraggable(){
+	$(this).draggable({
+		helper: 'clone'
+	});
+};
+
+function searchImagePosition(){
+	$(this).css('position', 'fixed');
 };
 
 function mouseLeaveSearchImage(){
 	$('.move_to_bear').remove();
 };
 
-function moveImageToMemory(){
-	var url = $(this).data('url');
-	var keyword = $(this).data('keyword');
-	console.log(url + " " + keyword + " ");
+function moveImageToMemory(clone){
+	var url = clone.attr('src');
 	var newMemory = {
 		bear_id: bearID,
-		keyword: keyword,
+		keyword: lastSearch,
 		image_url: url
 	};
 
