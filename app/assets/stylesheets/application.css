@@ -115,7 +115,7 @@ input, button {
 
 #searches_box {
 	height: 600px;
-	overflow: scroll;
+	overflow-y: scroll;
 }
 
 #search_bar_label {
@@ -134,6 +134,13 @@ input, button {
 	float: left;
 }
 
+#memory_drop {
+	background: orange;
+	width: 300px;
+	height: 100px;
+	margin-top: 60px;
+}
+
 .bear {
 	background: url('search_bear_imagery-01.png') 0 0 no-repeat;
 	width: 440px;
@@ -143,5 +150,7 @@ input, button {
 .bear_text {
 	background: white;
 }
-/*
-note of change*/
+
+.red {
+	background: red;
+}
