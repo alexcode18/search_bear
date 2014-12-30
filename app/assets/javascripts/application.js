@@ -33,6 +33,7 @@ $(function(){
 	$('body').on('click', '#login_submit', fetchUserData);
 	$('body').on('click', '.getBearButton', renderBearScreen);
 	$('body').on('click', '#search_button', search);
+	$('body').on('click', '#add_happy', raiseHappy);
 	
 	// $('body').on('mouseenter', '.search_image', searchImageHover);
 	// $('body').on('mouseleave', '.search_image', mouseLeaveSearchImage);
@@ -88,7 +89,8 @@ function renderSignUp(){
 
 	var submitSignUp = $('<button>').attr('id', 'signup_button').text('create your bear!');
 
-	$('#login').empty().append(emailLabel)
+	$('#login').empty()
+							.append(emailLabel)
 							.append(email)
 							.append(passwordLabel)
 							.append(password)
@@ -207,9 +209,11 @@ function bearScreenData(bear) {
 	var bearImage = $('<div>').addClass('bear');
 	var userDiv = $('<div>').text('Hi, ' + userName + '! My name is ' + bearName + '.').addClass('container').addClass('bear_text');
 	var favoriteColor = bear.user.favorite_color;
+	var happyButton = $('<button>').text('Add Happy').attr('id', 'add_happy');
+	bearFeelingsCounter(bear);
 	bearMemories = bear.memories;
 	bearMemories.forEach(fetchMemory);
-	$('#bear_land').append(userDiv).append(bearImage);
+	$('#bear_land').append(userDiv).append(bearImage).append(happyButton);
 };
 
 function search(){
@@ -259,7 +263,11 @@ function moveImageToMemory(clone){
 		image_url: url
 	};
 
-	$.post('/memories/', newMemory).done(fetchMemory);
+	$.post('/memories/', newMemory).done(function(data){
+		fetchMemory(data);
+		raiseHappy;
+	}
+		);
 };
 
 function fetchMemory(memory){
@@ -272,18 +280,44 @@ function fetchMemory(memory){
 };
 
 
-function changeColor(x,y){
-  var hue = x / parseInt($(window).width()) * 360;
-  var saturation = ",100%,"
-  var lightness = y / parseInt($(window).height()) * 100;
-  var hsl = "hsl("+hue+saturation+lightness+"%)";
-  return hsl;
-};
+// function changeColor(x,y){
+//   var hue = x / parseInt($(window).width()) * 360;
+//   var saturation = ",100%,"
+//   var lightness = y / parseInt($(window).height()) * 100;
+//   var hsl = "hsl("+hue+saturation+lightness+"%)";
+//   return hsl;
+// };
 
 function bearFeelingsCounter(bear) {
+	var energy = bear.energy;
+	var happy = bear.happiness;
+	var hunger = bear.hunger;
+	var energyBar = $('<div>').addClass('bear_bar').attr('id', 'energy').css('width', energy);
+	var happyBar = $('<div>').addClass('bear_bar').attr('id', 'happy').css('width', happy);
+	var hungerBar = $('<div>').addClass('bear_bar').attr('id', 'hunger').css('width', hunger);
+	$('body').append(energyBar)
+					.append('<br>')
+					.append(happyBar)
+					.append('<br>')
+					.append(hungerBar);
+
 	setInterval(function(){
-		bear.energy -= 1;
-		bear.happiness -= 1;
-		bear.hunger -= 1;
-	}, 1000);
-}
+		$.ajax({
+			url: '/bears/' + bearID + '/automaticscore', 
+			type: 'put'
+		}).done(renderBearFeelings)
+	}, 86000);
+};
+
+function renderBearFeelings(bear){
+	$('#energy').css('width', bear.energy + 'px');
+	$('#happy').css('width', bear.happiness + 'px');
+	$('#hunger').css('width', bear.hunger + 'px');
+};
+
+function raiseHappy(){
+	$.ajax({
+			url: '/bears/' + bearID + '/raise_happy', 
+			type: 'put'
+		}).done(renderBearFeelings);
+};
