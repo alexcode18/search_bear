@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   resources :searches, only: [:index, :show, :create, :update, :destroy]
   resources :memories, only: [:index, :show, :create, :update, :destroy]
   resources :bings
+  put 'bears/:id/automaticscore' => 'bears#automaticscore', as: 'autoscore'
+  put 'bears/:id/raise_happy' => 'bears#raise_happy', as: 'raise_happy'
+  put 'bears/:id/raise_health' => 'bears#raise_health', as: 'raise_health'
+  put 'bears/:id/raise_energy' => 'bears#raise_energy', as: 'raise_energy'
   get 'sessions/new' => 'sessions#new', as: 'login'
   post 'sessions' => 'sessions#create'
   delete 'sessions' => 'sessions#destroy'

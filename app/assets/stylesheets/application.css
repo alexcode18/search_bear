@@ -151,6 +151,11 @@ input, button {
 	background: white;
 }
 
+.bear_bar {
+	background: blue;
+	height: 20px;
+}
+
 .red {
 	background: red;
 }
