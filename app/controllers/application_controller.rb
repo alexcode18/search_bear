@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  helper_method :authenticate, :current_author, :logged_in?
+  helper_method :authenticate, :current_user, :logged_in?
 
   def index
   	render layout: 'application', text: ''

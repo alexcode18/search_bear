@@ -9,7 +9,11 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
-		render json: @user
+		if current_user && current_user == @note.user
+			render json: @user
+		else
+			render json: { errors: ["You are not authorized to see that note"] }, status: 401
+		end
 	end
 
 	def create
@@ -25,9 +29,25 @@ class UsersController < ApplicationController
       session[:current_user] = @user.id
       render json: @user
     else
-    	render json: @user.errors
+    	render json: { errors: @user.errors.full_messages }, status: 422
     end
   end
+
+  def update
+  	@user = User.find(params[:id])
+  	if @user.update(user_params)
+  		render json: @user
+  	else
+			render json: { errors: @user.errors.full_messages }, status: 422
+		end
+	end
+
+	def delete
+		@user = User.find(params[:id])
+    @user.destroy
+    session[:current_user] = nil if @user == current_user
+    redirect_to new_user_path
+	end
 
 	private
 

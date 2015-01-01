@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 			session[:current_user_id] = user.id
 			render json: user.to_json(:include => :bears)
 		else
-			redirect_to root_path
+			redirect_to root_url, flash: { status: 422 }
 		end
 	end
 

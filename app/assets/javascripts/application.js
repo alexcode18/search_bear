@@ -50,8 +50,18 @@ function fetchUserData() {
 		password: password
 	};
 
-	$.post('/sessions', newSession).done(renderSession);
+	$.post('/sessions', newSession).done(function(data){
+		if (data.id) {
+			renderSession(data);
+		}
+	});
 }
+
+function renderErrors(errors){
+	for (var i = 0; i < errors.length; i++){
+		var error = $('<p>').text(i).prependTo('#login').css('color', 'red');
+	}
+};
 
 function renderSignUp(){
 	
