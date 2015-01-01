@@ -9,6 +9,9 @@
 </head>
 <body>
 	<div id="login" class="container">
+		<% flash.each do |name, msg| -%>
+			<%= content_tag :div, msg, class: name %>
+		<% end -%>
 		<ul>
 			<li>
 				<h3>Log In</h3>
