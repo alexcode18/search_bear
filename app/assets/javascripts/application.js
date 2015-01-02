@@ -24,6 +24,7 @@ $(function(){
 		drop: function(event, ui) {
 			var drg = ui.helper;
 			moveImageToMemory(drg);
+			debugger
 			alert('dropped');
 		}
 	});
@@ -214,16 +215,74 @@ function renderBearScreen() {
 
 function bearScreenData(bear) {
 	$('#login').remove();
+	var fullpage = $('<div>').attr('id', 'fullpage');
 	var userName = bear.user.child_name;
 	var bearName = bear.name;
 	var bearImage = $('<div>').addClass('bear');
 	var userDiv = $('<div>').text('Hi, ' + userName + '! My name is ' + bearName + '.').addClass('container').addClass('bear_text');
 	var favoriteColor = bear.user.favorite_color;
 	var happyButton = $('<button>').text('Add Happy').attr('id', 'add_happy');
-	bearFeelingsCounter(bear);
-	bearMemories = bear.memories;
+	//gather the bear's memories
+	var bearMemories = bear.memories;
+	var slidingPane = $('<div>').attr('id', 'fullpage');
+	var bearSection = $('<div>').addClass('section');
+	var bearSlide = $('<div>').addClass('slide').attr('id', 'slide1');
+	var memorySlide = $('<div>').addClass('slide').attr('id', 'slide2');
+	var bearLand = $('<div>').attr('id',  'bear_land');
+	var bearSlideInfo = '<div id="memory_drop">memory drop</div><div id="search_zone"><div id="search_bar"><label id="search_bar_label">search</label><input type="text" name="search" placeholder="search"><button id="search_button">search</button></div><div id="searches_box"></div></div><span class="clearfix"></span>';
+	var memoryBox = $('<div id="memory_box">');
+	bearLand.append(userDiv).append(bearImage).append(happyButton);
+	bearSlide.append(bearLand).append(bearSlideInfo);
+	memorySlide.append(memoryBox);
+	bearSection.append(bearSlide).append(memorySlide);
+	fullpage.append(bearSection);	
+	$('body').append(fullpage);
+	bearLand.append(bearFeelingsCounter(bear))
+	$('#fullpage').fullpage({
+		//Navigation
+    menu: false,
+    anchors:['firstSlide', 'secondSlide'],
+    navigation: false,
+    navigationPosition: 'right',
+    navigationTooltips: ['firstSlide', 'secondSlide'],
+    slidesNavigation: true,
+    slidesNavPosition: 'bottom',
+
+    //Scrolling
+    css3: true,
+    scrollingSpeed: 700,
+    autoScrolling: true,
+    scrollBar: false,
+    easing: 'easeInQuart',
+    easingcss3: 'ease',
+    loopBottom: false,
+    loopTop: false,
+    loopHorizontal: true,
+    continuousVertical: false,
+    normalScrollElements: '#element1, .element2',
+    scrollOverflow: false,
+    touchSensitivity: 15,
+    normalScrollElementTouchThreshold: 5,
+
+    //Accessibility
+    keyboardScrolling: true,
+    animateAnchor: true,
+
+    //Design
+    controlArrows: true,
+    verticalCentered: true,
+    resize : true,
+    sectionsColor : ['#ccc', '#fff'],
+    paddingTop: '10px',
+    paddingBottom: '10px',
+    fixedElements: '#header, .footer',
+    responsive: 0,
+
+    //Custom selectors
+    sectionSelector: '.section',
+    slideSelector: '.slide'
+	});
 	bearMemories.forEach(fetchMemory);
-	$('#bear_land').append(userDiv).append(bearImage).append(happyButton);
 };
 
 function search(){
@@ -274,6 +333,7 @@ function moveImageToMemory(clone){
 	};
 
 	$.post('/memories/', newMemory).done(function(data){
+		alert('post went through');
 		fetchMemory(data);
 		raiseHappy;
 	}
