@@ -18,16 +18,6 @@ var bearID;
 var lastSearch;
 
 $(function(){
-	$('#memory_drop').droppable({
-		accept: '.search_image',
-		hoverClass: 'red',
-		drop: function(event, ui) {
-			var drg = ui.helper;
-			moveImageToMemory(drg);
-			debugger
-			alert('dropped');
-		}
-	});
 	$('body').on('click', '#sign_up', renderSignUp);
 	$('body').on('click', '#signup_button', createUser);
 	$('body').on('click', '#submit_bear', createBear);
@@ -219,7 +209,7 @@ function bearScreenData(bear) {
 	var userName = bear.user.child_name;
 	var bearName = bear.name;
 	var bearImage = $('<div>').addClass('bear');
-	var userDiv = $('<div>').text('Hi, ' + userName + '! My name is ' + bearName + '.').addClass('container').addClass('bear_text');
+	var talkDiv = $('<div>').text('Hi, ' + userName + '! My name is ' + bearName + '.').addClass('container').addClass('bear_talk');
 	var favoriteColor = bear.user.favorite_color;
 	var happyButton = $('<button>').text('Add Happy').attr('id', 'add_happy');
 	//gather the bear's memories
@@ -229,13 +219,25 @@ function bearScreenData(bear) {
 	var bearSlide = $('<div>').addClass('slide').attr('id', 'slide1');
 	var memorySlide = $('<div>').addClass('slide').attr('id', 'slide2');
 	var bearLand = $('<div>').attr('id',  'bear_land');
-	var bearSlideInfo = '<div id="memory_drop">memory drop</div><div id="search_zone"><div id="search_bar"><label id="search_bar_label">search</label><input type="text" name="search" placeholder="search"><button id="search_button">search</button></div><div id="searches_box"></div></div><span class="clearfix"></span>';
+	var bearUl = $('<ul id="bear_ul">');
+	var bearLi = $('<li id="bear_li">');
+	var talkLi = $('<li id="talk_li">');
+	var boxLi = $('<li id="box_li">');
+	var memoryDrop = $('<div>').attr('id', 'memory_drop');
+	var bearSlideInfo = '<div id="search_zone"><div id="search_bar"><label id="search_bar_label">search</label><input type="text" name="search" placeholder="search"><button id="search_button"></button></div><div id="searches_box"></div></div><span class="clearfix"></span>';
 	var memoryBox = $('<div id="memory_box">');
-	bearLand.append(userDiv).append(bearImage).append(happyButton);
+	bearLi.append(bearImage);
+	talkLi.append(talkDiv);
+	boxLi.append(memoryDrop);
+	bearUl.append(bearLi).append(talkLi).append(boxLi);
+	bearLand.append(bearUl);
 	bearSlide.append(bearLand).append(bearSlideInfo);
 	memorySlide.append(memoryBox);
 	bearSection.append(bearSlide).append(memorySlide);
-	fullpage.append(bearSection);	
+	fullpage.append(bearSection);
+	
+	backgroundColor(bear.user);
+
 	$('body').append(fullpage);
 	bearLand.append(bearFeelingsCounter(bear))
 	$('#fullpage').fullpage({
@@ -272,7 +274,7 @@ function bearScreenData(bear) {
     controlArrows: true,
     verticalCentered: true,
     resize : true,
-    sectionsColor : ['#ccc', '#fff'],
+    // sectionsColor : ['#ccc', '#fff'],
     paddingTop: '10px',
     paddingBottom: '10px',
     fixedElements: '#header, .footer',
@@ -282,6 +284,17 @@ function bearScreenData(bear) {
     sectionSelector: '.section',
     slideSelector: '.slide'
 	});
+
+	$('#memory_drop').droppable({
+		accept: '.search_image',
+		hoverClass: 'red',
+		drop: function(event, ui) {
+			var drg = ui.helper;
+			moveImageToMemory(drg);
+			alert('dropped');
+		}
+	});
+
 	bearMemories.forEach(fetchMemory);
 };
 
@@ -336,8 +349,7 @@ function moveImageToMemory(clone){
 		alert('post went through');
 		fetchMemory(data);
 		raiseHappy;
-	}
-		);
+	});
 };
 
 function fetchMemory(memory){
@@ -391,3 +403,15 @@ function raiseHappy(){
 			type: 'put'
 		}).done(renderBearFeelings);
 };
+
+function backgroundColor(user){
+	if (user.favorite_color === 'red') {
+		$('html').css('background', '#F8BAD1');
+	} else if (user.favorite_color === 'yellow') {
+		$('html').css('background', '#F7EFC4');
+	} else if (user.favorite_color === 'green') {
+		$('html').css('background', '#C9E4BF');
+	} else {
+		$('html').css('background', '#C0DBF3');
+	}
+}

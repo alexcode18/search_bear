@@ -62,12 +62,17 @@ html, body {
 .fp-controlArrow {
     position: absolute;
     z-index: 4;
-    top: 50%;
+    top: 40%;
     cursor: pointer;
     width: 0;
     height: 0;
     border-style: solid;
     margin-top: -38px;
+    border-radius: 20px;
+    -o-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    box-shadow: 1px 1px 2px #888888;
 }
 .fp-controlArrow.fp-prev {
     left: 15px;

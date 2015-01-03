@@ -43,16 +43,20 @@ img {
 }
 
 header {
-	background: limegreen;
 	color: white;
 	padding: 10px;
-	font-size: 14pt;
-	box-shadow: 1px 1px 2px #888888;
+	font-size: 16pt;
 	position: fixed;
 	top: 0px;
 	left: 0px;
 	width:100%;
 	z-index: 5;
+	text-shadow: 1px 1px 2px #888888;
+}
+
+header,
+#search_bar {
+	box-shadow: 1px 1px 2px #888888;
 }
 
 input, button {
@@ -88,34 +92,49 @@ input, button {
 	width: 400px;
 	height: 200px;
 	overflow: hidden;
-	border-radius: 20px;
-	-o-border-radius: 20px;
-	-webkit-border-radius: 20px;
-	-moz-border-radius: 20px;
+	cursor: move;
 }
 
 #bear_land {
-	float: left;
-	max-width: 1000px;
+	max-width: 100%;
 	padding: 40px;
-}
-
-#search_zone {
-	width: 400px;
-	padding: 10px;
-	padding-top: 50px;
-	float: right;
-	background: white;
+	text-align: center;
 }
 
 #search_bar {
 	text-align: center;
 	padding-bottom: 10px;
-	border-bottom: 2px solid limegreen;
+}
+
+#search_bar input {
+	padding: 5px;
+	font-size: 2em;
+	width: 35%;
+	vertical-align: top;
+}
+
+#search_button {
+	background: url('https://www.z2systems.com/neon/resource/start/images/20140729192722_550.png?t=1406680084882&t=1406680162928&t=1406680463548') 0 0 no-repeat;
+	height: 3em;
+	width: 3em;
+	background-size: 3em 3em;
+	background-color: #888888;
+	padding-left: 5px;
+}
+
+#search_button:hover {
+	background-color: lightgray;
+}
+
+#search_zone {
+	width: 100%;
+	padding: 10px;
+	box-shadow: 1px 1px 2px #888888;
 }
 
 #searches_box {
-	height: 600px;
+	padding-top: 10px;
+	height: 300px;
 	overflow-y: scroll;
 }
 
@@ -125,32 +144,43 @@ input, button {
 
 #memory_box {
 	width: 100%;
+	height: 100%;
+	overflow-y: scroll;
 }
 
 .memory_item {
 	background: white;
 	width: 600px;
 	margin: 10px;
-	padding: 10px;
 	float: left;
 }
 
 #memory_drop {
-	background: orange;
+	border: 5px dashed white;
 	width: 300px;
 	height: 100px;
-	margin-top: 60px;
-	z-index: 3;
+	margin-top: 150px;
 }
 
 .bear {
 	background: url('search_bear_imagery-01.png') 0 0 no-repeat;
-	width: 440px;
-	height: 660px;
+	background-size: 220px 330px;
+	width: 220px;
+	height: 330px;
 }
+/*
+#talk_li {
+	width: 30px;
+}*/
 
-.bear_text {
+.bear_talk {
 	background: white;
+	height: 100px;
+	width: 100px;
+	border-radius: 20px;
+	-o-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
 }
 
 .bear_bar {
@@ -158,6 +188,9 @@ input, button {
 	height: 20px;
 }
 
-.red {
-	background: red;
+#bear_ul li{
+	display: inline-block;
+	min-height: 330px;
+	height: 330px;
+	vertical-align: top;
 }
