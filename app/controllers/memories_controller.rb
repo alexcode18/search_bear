@@ -6,7 +6,6 @@ class MemoriesController < ApplicationController
 		memory[:keyword] = params[:keyword]
 		memory[:image_url] = params[:image_url]
 		memory.save
-		binding.pry
 		render json: memory
 	end
 
