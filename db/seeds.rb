@@ -9,7 +9,6 @@ require 'ffaker'
 
 User.delete_all
 Bear.delete_all
-Search.delete_all
 
 
 i = 0
@@ -33,13 +32,6 @@ while i < 20 do
 	bear.energy = 100
 	bear.user_id = i
 	bear.save()
-
-	(1..3).each do
-		search = Search.new()
-		search.user_id = i
-		search.keyword = ["panda", "whale", "zebra", "ice cream", "magic", "smile"].sample
-		search.save()
-	end
 
 	i += 1
 end
