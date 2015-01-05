@@ -34,9 +34,18 @@ class BearsController < ApplicationController
 
 	def automaticscore
 		@bear = Bear.find(params[:id])
-		@bear.energy -= 1
-		@bear.happiness -= 1
-		@bear.hunger -= 1
+
+		if @bear.energy > 5
+			@bear.energy -= 1
+		end
+
+		if @bear.happiness > 5
+			@bear.happiness -= 1
+		end
+
+		if @bear.hunger > 5
+			@bear.hunger -= 1
+		end
 		
 		@bear.save()
 		render json: @bear

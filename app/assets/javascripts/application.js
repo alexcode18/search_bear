@@ -18,18 +18,15 @@ var bearID;
 var lastSearch;
 
 $(function(){
-	$('body').on('click', '#sign_up', renderSignUp);
-	$('body').on('click', '#signup_button', createUser);
-	$('body').on('click', '#submit_bear', createBear);
+	$('body').on('click', '#sign_up', renderEditOrSignUp);
+	$('body').on('click', '#signup_button', createOrUpdateUser);
+	$('body').on('click', '#submit_bear', createOrUpdateBear);
 	$('body').on('click', '#login_submit', fetchUserData);
 	$('body').on('click', '.getBearButton', renderBearScreen);
 	$('body').on('click', '#search_button', search);
 	$('body').on('click', '#add_happy', raiseHappy);
 	
-	// $('body').on('mouseenter', '.search_image', searchImageHover);
-	// $('body').on('mouseleave', '.search_image', mouseLeaveSearchImage);
 	$('body').on('mouseenter', '.search_image', searchImageDraggable);
-	// $('body').on('click', '.search_image', searchImagePosition);
 });
 
 function fetchUserData() {
@@ -45,8 +42,16 @@ function fetchUserData() {
 		if (data.id) {
 			renderSession(data);
 		}
+		// } else {
+		// 	var fade_flash = function() {
+		//     $("#flash_notice").delay(5000).fadeOut("slow");
+		//     $("#flash_alert").delay(5000).fadeOut("slow");
+		//     $("#flash_error").delay(5000).fadeOut("slow");
+		// 	};
+		// 	$('#login').prepend(fade_flash());
+		// }
 	});
-}
+};
 
 function renderErrors(errors){
 	for (var i = 0; i < errors.length; i++){
@@ -54,7 +59,9 @@ function renderErrors(errors){
 	}
 };
 
-function renderSignUp(){
+function renderEditOrSignUp(){
+	$('#login').empty().css('display', 'inline');
+	var newUserHeader = $('<h3>').text('Sign Up!');
 	
 	var emailLabel = $('<label>').text('email');
 	var email = $('<input>').attr('type', 'text').attr('name', 'signup_email');
@@ -62,19 +69,19 @@ function renderSignUp(){
 	var passwordLabel = $('<label>').text('password');
 	var password = $('<input>').attr('type', 'password').attr('name', 'signup_password');
 
-	var passwordConfLabel = $('<label>').text('password confirmation');
+	var passwordConfLabel = $('<label>').text('confirm password');
 	var passwordConf = $('<input>').attr('type', 'password').attr('name', 'signup_confirmation');
 
-	var childNameLabel = $('<label>').text('child\'s name');
+	var childNameLabel = $('<label>').text('child\'s nickname (for bear)');
 	var childName = $('<input>').attr('type', 'text').attr('name', 'childName');
 
-	var childGenderLabel = $('<label>').text('child\'s gender');
+	var childGenderLabel = $('<h4>').text('child\'s gender');
 	var boyLabel = $('<label for="boy">').text('boy');
 	var boy = $('<input type="radio">').attr('name', 'childGender').val('M').attr('id', 'boy');
 	var girlLabel = $('<label for="girl">').text('girl');
 	var girl = $('<input type="radio">').attr('name', 'childGender').val('F').attr('id', 'girl');
 
-	var favColorLabel = $('<label>').text('child\'s favorite color');
+	var favColorLabel = $('<h4>').text('favorite color');
 	var redLabel = $('<label for="red">').text('red');
 	var red = $('<input type="radio">').attr('name', 'childFavColor').val('red').attr('id', 'red');
 
@@ -89,34 +96,53 @@ function renderSignUp(){
 	
 
 	var submitSignUp = $('<button>').attr('id', 'signup_button').text('create your bear!');
+	var submitEdit = $('<button>').attr('id', 'edit_user_form_button').text('save');
 
-	$('#login').empty()
+	var supportInfo = $('<p>').text('Your information will not be shared with any outside sources');
+
+	if (bearID) {
+		$.get('/bears/' + bearID).done(function(bear){
+			email.val(bear.user.parent_email);
+			childName.val(bear.user.child_name);
+			$('input[name=childGender][value=' + bear.user.child_gender + ']').prop('checked', true);
+			$('input[name=childFavColor][value=' + bear.user.favorite_color + ']').prop('checked', true);
+		});
+	}
+
+	$('#login').append(newUserHeader)
 							.append(emailLabel)
-							.append(email)
+							.append(email).append('<br>')
 							.append(passwordLabel)
-							.append(password)
+							.append(password).append('<br>')
 							.append(passwordConfLabel)
-							.append(passwordConf)
+							.append(passwordConf).append('<br>')
 							.append(childNameLabel)
-							.append(childName)
-							.append(childGenderLabel)
+							.append(childName).append('<br>')
+							.append(childGenderLabel).append('<br>')
 							.append(boyLabel)
-							.append(boy)
+							.append(boy).append('<br>')
 							.append(girlLabel)
-							.append(girl)
-							.append(favColorLabel)
+							.append(girl).append('<br>')
+							.append(favColorLabel).append('<br>')
 							.append(redLabel)
-							.append(red)
+							.append(red).append('<br>')
 							.append(yellowLabel)
-							.append(yellow)
+							.append(yellow).append('<br>')
 							.append(greenLabel)
-							.append(green)
+							.append(green).append('<br>')
 							.append(blueLabel)
-							.append(blue)
-							.append(submitSignUp);
+							.append(blue).append('<br>')
+
+							if (bearID) {
+								$('#login').append(submitEdit);
+							} else {
+								$('#login').append(submitSignUp).append('<br>')
+														.append(supportInfo);
+							}
+							
 };
 
-function createUser(){
+function createOrUpdateUser(){
 	var email = $('input[name="signup_email"]').val();
 	var password = $('input[name="signup_password"]').val();
 	var passwordConf = $('input[name="signup_confirmation"]').val();
@@ -132,46 +158,85 @@ function createUser(){
 		child_gender: childGender,
 		favorite_color: favColor
 	};
-	
-	$.post('/users', newUser).done(renderBearForm);
+
+	if (bearID) {
+		$.get('/bears/' + bearID).done(function(bear){
+			var userID = bear.user.id;
+			$.ajax({
+				url: '/users/' + userID,
+				type: 'put',
+				data: newUser
+			}).done(bearScreenData(bear))
+		});
+	} else {
+		$.post('/users', newUser).done(renderBearForm);
+	}
 };
 
 function renderBearForm(currentUser){
-	var bearOwner = currentUser.id;
-	var bearNameLabel = $('<label for="bearName">').attr('name', 'bearName');
+	var bearOwner;
+	var bearX;
+	if (currentUser === bearID) {
+		$.get('/bears/' + bearID).done(function(bear){
+			bearOwner = bear.user.id;
+			bearX = bear;
+		});
+	} else {
+		bearOwner = currentUser.id;
+	}
+	
+	$('#login').empty().css('display', 'inline');
+	
+	var bearNameLabel = $('<label for="bearName">').attr('name', 'bearName').text('Name your bear!');
 	var bearName = $('<input>').attr('name', 'bearName').attr('id', bearOwner);
-	var bearGenderLabel = $('<label>').text('bear\'s gender');
+	var bearGenderLabel = $('<h4>').text('bear\'s gender');
 	var boyLabel = $('<label for="boy">').text('boy');
 	var boy = $('<input type="radio">').attr('name', 'bearGender').val('M').attr('id', 'boy');
 	var girlLabel = $('<label for="girl">').text('girl');
 	var girl = $('<input type="radio">').attr('name', 'bearGender').val('F').attr('id', 'girl');
 	var submitBear = $('<button>').attr('id', 'submit_bear').text('submit');
+	
+	// if (bearID) {
+	// 	$('input[name=gender][value=' + bearX.gender + ']').prop('checked', true);
+	// }
 
-	$('#login').empty().append(bearNameLabel)
-							.append(bearName)
-							.append(bearGenderLabel)
+	$('#login').empty()
+							.append(bearNameLabel).append('<br>')
+							.append(bearName).append('<br>')
+							.append(bearGenderLabel).append('<br>')
 							.append(boyLabel)
-							.append(boy)
+							.append(boy).append('<br>')
 							.append(girlLabel)
-							.append(girl)
+							.append(girl).append('<br>')
 							.append(submitBear);
 };
 
-function createBear() {
+function createOrUpdateBear() {
 	var bearOwner = $('input[name="bearName"]').attr('id');
 	var bearName = $('input[name="bearName"]').val();
 	var bearGender = $('input:radio[name=bearGender]:checked').val();
 	
-	newBear = {
+	var newBear = {
 		user_id: bearOwner,
 		name: bearName,
 		gender: bearGender
 	}
 
-	$.post('/bears', newBear).done(function(data){
-		var bearID = data.id;
-		$.get('/bears/' + bearID).done(bearScreenData);
-	});
+	if (bearID) {
+		$.get('/bears/' + bearID).done(function(bear){
+			$.ajax({
+				url: '/bears/' + bearID,
+				type: 'put',
+				data: newBear
+			}).done(bearScreenData(bear))
+		});
+	} else {
+		$.post('/bears', newBear).done(function(data){
+			var bearID = data.id;
+			$.get('/bears/' + bearID).done(bearScreenData);
+		});
+	}
+	
 }
 
 function renderSession(currentUser){
@@ -198,13 +263,18 @@ function getBears(bears){
 };
 
 function renderBearScreen() {
-	console.log('renderBearScreen');
 	bearID = $(this).data('id');
 	$.get('/bears/' + bearID).done(bearScreenData);
 };
 
 function bearScreenData(bear) {
-	$('#login').remove();
+	$('#login').css('display', 'none');
+
+	if ($(document).has('#fullpage')) {
+		$('#fullpage').remove();
+		console.log('refreshing');
+	}
+
 	var fullpage = $('<div>').attr('id', 'fullpage');
 	var userName = bear.user.child_name;
 	var bearName = bear.name;
@@ -220,6 +290,7 @@ function bearScreenData(bear) {
 	var memorySlide = $('<div>').addClass('slide').attr('id', 'slide2');
 	var bearLand = $('<div>').attr('id',  'bear_land');
 	var bearUl = $('<ul id="bear_ul">');
+	var barsLi = $('<li id="bars_li">');
 	var bearLi = $('<li id="bear_li">');
 	var talkLi = $('<li id="talk_li">');
 	var boxLi = $('<li id="box_li">');
@@ -229,7 +300,7 @@ function bearScreenData(bear) {
 	bearLi.append(bearImage);
 	talkLi.append(talkDiv);
 	boxLi.append(memoryDrop);
-	bearUl.append(bearLi).append(talkLi).append(boxLi);
+	bearUl.append(barsLi).append(bearLi).append(talkLi).append(boxLi);
 	bearLand.append(bearUl);
 	bearSlide.append(bearLand).append(bearSlideInfo);
 	memorySlide.append(memoryBox);
@@ -239,7 +310,6 @@ function bearScreenData(bear) {
 	backgroundColor(bear.user);
 
 	$('body').append(fullpage);
-	bearLand.append(bearFeelingsCounter(bear))
 	$('#fullpage').fullpage({
 		//Navigation
     menu: false,
@@ -285,17 +355,29 @@ function bearScreenData(bear) {
     slideSelector: '.slide'
 	});
 
+	bearMemories.forEach(fetchMemory);
+	bearFeelingsCounter(bear);
+
+	setInterval(bearBlink, 4000);
+
+	$('body').on('click', '#edit_user_button', renderEditOrSignUp);
+	$('body').on('click', '#edit_user_form_button', createOrUpdateUser);
+
+	// $('body').on('click', '#edit_bear_button', renderBearForm(bearID));
+
 	$('#memory_drop').droppable({
 		accept: '.search_image',
 		hoverClass: 'red',
 		drop: function(event, ui) {
 			var drg = ui.helper;
 			moveImageToMemory(drg);
-			alert('dropped');
+			raiseHappy();
 		}
 	});
+};
 
-	bearMemories.forEach(fetchMemory);
+function bearBlink(){
+	$('.bear').toggleClass('bear_blink');
 };
 
 function search(){
@@ -346,7 +428,6 @@ function moveImageToMemory(clone){
 	};
 
 	$.post('/memories/', newMemory).done(function(data){
-		alert('post went through');
 		fetchMemory(data);
 		raiseHappy;
 	});
@@ -374,14 +455,23 @@ function bearFeelingsCounter(bear) {
 	var energy = bear.energy;
 	var happy = bear.happiness;
 	var hunger = bear.hunger;
-	var energyBar = $('<div>').addClass('bear_bar').attr('id', 'energy').css('width', energy);
-	var happyBar = $('<div>').addClass('bear_bar').attr('id', 'happy').css('width', happy);
-	var hungerBar = $('<div>').addClass('bear_bar').attr('id', 'hunger').css('width', hunger);
-	$('body').append(energyBar)
-					.append('<br>')
-					.append(happyBar)
-					.append('<br>')
-					.append(hungerBar);
+	var bearBars = $('<ul>').addClass('bear_bar');
+	var energyLi = $('<li>');
+	var happyLi = $('<li>');
+	var hungerLi = $('<li>');
+	var energyBar = $('<div>').attr('id', 'energy');
+	var happyBar = $('<div>').attr('id', 'happy');
+	var hungerBar = $('<div>').attr('id', 'hunger');
+	energyLi.append(energyBar);
+	happyLi.append(happyBar);
+	hungerLi.append(hungerBar);
+	bearBars.append(energyLi)
+					.append(happyLi)
+					.append(hungerLi);
+	$('#bars_li').append(bearBars);
+	$('#energy').css('height', bear.energy + 'px');
+	$('#happy').css('height', bear.happiness + 'px');
+	$('#hunger').css('height', bear.hunger + 'px');
 
 	setInterval(function(){
 		$.ajax({
@@ -392,9 +482,9 @@ function bearFeelingsCounter(bear) {
 };
 
 function renderBearFeelings(bear){
-	$('#energy').css('width', bear.energy + 'px');
-	$('#happy').css('width', bear.happiness + 'px');
-	$('#hunger').css('width', bear.hunger + 'px');
+	$('#energy').css('height', bear.energy + 'px');
+	$('#happy').css('height', bear.happiness + 'px');
+	$('#hunger').css('height', bear.hunger + 'px');
 };
 
 function raiseHappy(){
