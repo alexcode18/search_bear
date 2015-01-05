@@ -9,7 +9,9 @@ class SessionsController < ApplicationController
 			session[:current_user_id] = user.id
 			render json: user.to_json(:include => :bears)
 		else
-			redirect_to root_url, flash: { status: 422 }
+			# [:error, :warning, :notice].each do |type|
+   #      return flash[type] unless flash[type].blank?
+   #    end
 		end
 	end
 

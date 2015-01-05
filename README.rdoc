@@ -1,28 +1,29 @@
-== README
+Teaching Kids to Search. Teaching Kids to Learn.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+== ABOUT THE SITE
 
-Things you may want to cover:
+The aim of Search Bear is to assist parents in the quest to educate their children. Search Bear is an image search engine for children ages 3-6. Why images? This is the age at which many children learn to read, and Search Bear is designed to help. The parent and child work together to set up an account, and a personalized bear avatar. From there, you are taken inside your bear's cave, and the child discovers that the bear is a lot like him or her; it also wants to learn.
 
-* Ruby version
+The searched images can be dragged and dropped into the bear's cave, where it will be treasured and stored a long with its keyword. This comes in handy later for lessons in word association.
 
-* System dependencies
+== ABOUT THE BEAR
 
-* Configuration
+Each bear comes with 100% happiness, hunger, and energy. To keep those counts up, the bear needs to learn, eat, and sleep.
 
-* Database creation
+== ABOUT THE SETUP
 
-* Database initialization
+- Ruby 2.1.2
+- Rails 4.1.7
+- JQuery
+- CSS3
+- HTML 5
+- HTTParty
+- BCrypt
+- Rails_12Factor
+- Bing Search API
+- Fullpage.js - Used to Create the Panning between pages.
 
-* How to run the test suite
+== ERD LINK
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+http://postimg.org/image/qrlfilvtd/
+http://s24.postimg.org/9eb53r0id/search_bear_erd_01.png

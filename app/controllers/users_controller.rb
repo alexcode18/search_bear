@@ -9,10 +9,10 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
-		if current_user && current_user == @note.user
+		if current_user && @user == current_user
 			render json: @user
-		else
-			render json: { errors: ["You are not authorized to see that note"] }, status: 401
+		# else
+		# 	render json: { errors: ["You are not authorized to see that note"] }, status: 401
 		end
 	end
 
@@ -28,14 +28,22 @@ class UsersController < ApplicationController
     if @user.save
       session[:current_user] = @user.id
       render json: @user
-    else
-    	render json: { errors: @user.errors.full_messages }, status: 422
     end
   end
 
   def update
   	@user = User.find(params[:id])
-  	if @user.update(user_params)
+  	@user.parent_email = params[:parent_email]
+
+  	if (params[:password] != nil) && (params[:password] === params[:password_confirmation])
+			@user.password = params[:password]
+			@user.password_confirmation = params[:password_confirmation]
+		end
+
+		@user.child_name = params[:child_name]
+		@user.child_gender = params[:child_gender]
+		@user.favorite_color = params[:favorite_color]
+  	if @user.save()
   		render json: @user
   	else
 			render json: { errors: @user.errors.full_messages }, status: 422
