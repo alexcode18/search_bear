@@ -14,7 +14,7 @@
  *= require_self
  */
 
-
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,600,700);
 
 .clearfix:after {
     content: ".";
@@ -32,9 +32,11 @@
 }
 
 html {
-	font-family: Arial;
-	letter-spacing: 2px;
+	font-family: 'Raleway', Arial;
+	font-weight: 500;
+	letter-spacing: 3px;
 	background: #C0DBF3;
+	color: grey;
 }
 
 img {
@@ -42,25 +44,20 @@ img {
 }
 
 header {
-	color: white;
-	padding: 10px;
+	padding: 15px;
 	font-size: 16pt;
 	position: fixed;
 	top: 0px;
 	left: 0px;
 	width:100%;
 	z-index: 5;
-	text-shadow: 1px 1px 2px #888888;
-}
-
-header,
-#search_bar {
-	box-shadow: 1px 1px 2px #888888;
 }
 
 header li {
 	display: inline-block;
-	width: 400px;
+}
+
+header a {
 	cursor: pointer;
 }
 
@@ -68,7 +65,7 @@ header li {
 #right_cave_wall,
 #grey_top_bar {
 	position: fixed;
-	top: 0px;
+	top: -25px;
 }
 
 #left_cave_wall,
@@ -90,24 +87,32 @@ header li {
 	right: 0;
 }
 
-#grey_top_bar {
-	z-index: -2;
-	left: 0;
-	height: 23px;
-	width: 100%;
-	background: lightgrey;
-	opacity: .5;
-}
-
 .container h3,
 .container h4 {
 	text-align: center;
 	padding: 5px;
 }
 
-#search_bar input, 
-button {
+button,
+header a {
 	text-transform: uppercase;
+	background-color: white;
+	border-radius: 5px;
+	color: grey;
+	background: transparent;
+	font-size: 10pt;
+}
+
+button,
+input,
+header a {
+	padding: 8px;
+	border: 1px solid grey;	
+}
+
+button:hover,
+header a:hover {
+	background: rgba(192,192,192,.6);
 }
 
 #logo {
@@ -119,13 +124,7 @@ button {
 .container {
 	z-index: 12;
 	background: white;
-	color: grey;
 	padding: 10px;
-	border-radius: 20px;
-	-o-border-radius: 20px;
-	-webkit-border-radius: 20px;
-	-moz-border-radius: 20px;
-	box-shadow: 1px 1px 2px #888888;
 }
 
 #login {
@@ -173,16 +172,7 @@ button {
 }
 
 #search_button {
-	background: url('https://www.z2systems.com/neon/resource/start/images/20140729192722_550.png?t=1406680084882&t=1406680162928&t=1406680463548') 0 0 no-repeat;
-	height: 3em;
-	width: 3em;
-	background-size: 3em 3em;
-	background-color: #888888;
-	padding-left: 5px;
-}
-
-#search_button:hover {
-	background-color: lightgray;
+	background: url('https://www.z2systems.com/neon/resource/start/images/20140729192722_550.png?t=1406680084882&t=1406680162928&t=1406680463548') 0 0 no-repeat;	
 }
 
 #search_zone {

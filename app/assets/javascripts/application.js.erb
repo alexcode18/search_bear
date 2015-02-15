@@ -239,15 +239,16 @@ function createOrUpdateBear() {
 	
 }
 
+//validates the user, and empties the sign-in form to produce a bear list.
 function renderSession(currentUser){
 	var userID = currentUser.id;
 	
 	var bears = currentUser.bears;
-	// var bearBox = $('<button>').text();
 	
 	$('#login').empty().append(getBears(bears));
 };
 
+//displays a list of all a user's bears
 function getBears(bears){
 	var bearList = [];
 	for (var i = 0; i < bears.length; i++) {
@@ -262,11 +263,13 @@ function getBears(bears){
 	}
 };
 
+//grabs the data of a specific user bear.
 function renderBearScreen() {
 	bearID = $(this).data('id');
 	$.get('/bears/' + bearID).done(bearScreenData);
 };
 
+//display all properties associated with the bear
 function bearScreenData(bear) {
 	$('#login').css('display', 'none');
 
@@ -498,7 +501,7 @@ function backgroundColor(user){
 	if (user.favorite_color === 'red') {
 		$('html').css('background', '#F8BAD1');
 	} else if (user.favorite_color === 'yellow') {
-		$('html').css('background', '#F7EFC4');
+		$('html').css('background', 'rgb(251, 241, 115)');
 	} else if (user.favorite_color === 'green') {
 		$('html').css('background', '#C9E4BF');
 	} else {

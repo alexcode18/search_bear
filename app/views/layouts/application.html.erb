@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SearchBear</title>
+  <title>Search Bear</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -15,9 +15,9 @@
 			<li>		
 				<h4>Log In</h4>
 				<label>email</label>
-				<input type="text" name="login_email" placeholder="email@you.com" id="login_email"><br>
+				<input type="text" name="login_email" placeholder="email@you.com" id="login_email" value="happy"><br>
 				<label>password</label>
-				<input type="password" name="login_password" id="login_password"><br>
+				<input type="password" name="login_password" id="login_password" value="happy"><br>
 				<button id="login_submit">submit</button>
 			</li>
 			<li>
@@ -29,7 +29,6 @@
 	<header>
 		<ul>
 			<li>
-				<img src="http://upload.wikimedia.org/wikipedia/commons/0/09/White_paw_print.png" id="logo">
 				<h1>SEARCH BEAR</h1>
 			</li>
 			<li><a id="edit_user_button">edit user</a></li>
@@ -39,7 +38,6 @@
 	<span class="clearfix"></span>
 	<div id="left_cave_wall">
 	<div id="right_cave_wall">
-	<div id="grey_top_bar">
 </body>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 </html>
