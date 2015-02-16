@@ -11626,8 +11626,16 @@ $(function(){
 	$('body').on('click', '#login_submit', fetchUserData);
 	$('body').on('click', '.getBearButton', renderBearScreen);
 	$('body').on('click', '#search_button', search);
+	$('body').on('click', '#search_button', search);
 	$('body').on('click', '#add_happy', raiseHappy);
-	
+
+	$('body').on('keypress',function(){
+		var keyCode = (event.keyCode ? event.keyCode : event.which);
+		if(keyCode == '13' && $('#sign_up').css('display') == 'inline-block'){
+			alert('Enter key is pressed!');
+		}
+	})
+
 	$('body').on('mouseenter', '.search_image', searchImageDraggable);
 });
 
@@ -11900,7 +11908,7 @@ function bearScreenData(bear) {
 	var talkLi = $('<li id="talk_li">');
 	var boxLi = $('<li id="box_li">');
 	var memoryDrop = $('<div>').attr('id', 'memory_drop');
-	var bearSlideInfo = '<div id="search_zone"><div id="search_bar"><label id="search_bar_label">search</label><input type="text" name="search" placeholder="search"><button id="search_button"></button></div><div id="searches_box"></div></div><span class="clearfix"></span>';
+	var bearSlideInfo = '<div id="search_zone"><div id="search_bar"><label id="search_bar_label">search</label><input type="text" name="search" placeholder="find an image, drag to bear, click right"><button id="search_button">search</button></div><div id="searches_box"></div></div><span class="clearfix"></span>';
 	var memoryBox = $('<div id="memory_box">');
 	bearLi.append(bearImage);
 	talkLi.append(talkDiv);

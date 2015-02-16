@@ -165,14 +165,15 @@ header a:hover {
 }
 
 #search_bar input {
-	padding: 5px;
-	font-size: 2em;
 	width: 35%;
 	vertical-align: top;
 }
 
+#search_bar input,
 #search_button {
-	background: url('https://www.z2systems.com/neon/resource/start/images/20140729192722_550.png?t=1406680084882&t=1406680162928&t=1406680463548') 0 0 no-repeat;	
+	padding: 5px;
+	font-size: 1em;
+	
 }
 
 #search_zone {
@@ -202,7 +203,6 @@ header a:hover {
 	background: white;
 	width: 400px;
 	margin: 10px;
-	float: left;
 	text-align: center;
 }
 
@@ -210,11 +210,17 @@ header a:hover {
 	width: 350px;
 }
 
+#box_li {
+	position: relative;
+	padding-left: 20px;
+}
+
 #memory_drop {
 	border: 5px dashed white;
 	width: 400px;
 	height: 200px;
-	margin-top: 150px;
+  position: absolute;
+  bottom: 0;
 	border-radius: 20px;
 	-o-border-radius: 20px;
 	-webkit-border-radius: 20px;
@@ -231,12 +237,13 @@ header a:hover {
 
 .bear_talk {
 	background: white;
-	height: 100px;
-	width: 100px;
-	border-radius: 20px;
-	-o-border-radius: 20px;
-	-webkit-border-radius: 20px;
-	-moz-border-radius: 20px;
+	height: 110px;
+	width: 120px;
+	padding-left: 20px;
+	-webkit-clip-path: polygon(10% 0, 100% 0%, 100% 100%, 9% 100%, 9% 69%, 0 61%, 10% 52%);
+	-o-clip-path: polygon(10% 0, 100% 0%, 100% 100%, 9% 100%, 9% 69%, 0 61%, 10% 52%);
+	-moz-clip-path: polygon(10% 0, 100% 0%, 100% 100%, 9% 100%, 9% 69%, 0 61%, 10% 52%);
+	clip-path: polygon(10% 0, 100% 0%, 100% 100%, 9% 100%, 9% 69%, 0 61%, 10% 52%);
 }
 
 .bear_bar div {
@@ -245,9 +252,13 @@ header a:hover {
 	background: #1C75BC;
 }
 
+#bear_ul {
+	margin: 0 auto;
+}
+
 #bear_ul li{	
 	min-height: 330px;
-	height: 330px;
+	/*height: 330px;*/
 	vertical-align: top;
 }
 

@@ -919,37 +919,37 @@ header a:hover {
 
 /* line 168, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
 #search_bar input {
-  padding: 5px;
-  font-size: 2em;
   width: 35%;
   vertical-align: top;
 }
 
-/* line 175, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
+/* line 174, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
+#search_bar input,
 #search_button {
-  background: url("https://www.z2systems.com/neon/resource/start/images/20140729192722_550.png?t=1406680084882&t=1406680162928&t=1406680463548") 0 0 no-repeat;
+  padding: 5px;
+  font-size: 1em;
 }
 
-/* line 179, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
+/* line 180, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
 #search_zone {
   width: 100%;
   padding: 10px;
   box-shadow: 1px 1px 2px #888888;
 }
 
-/* line 185, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
+/* line 186, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
 #searches_box {
   padding-top: 10px;
   height: 300px;
   overflow-y: scroll;
 }
 
-/* line 191, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
+/* line 192, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
 #search_bar_label {
   display: none;
 }
 
-/* line 195, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
+/* line 196, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
 #memory_box {
   width: 100%;
   height: 100%;
@@ -957,12 +957,11 @@ header a:hover {
   margin: 0 auto;
 }
 
-/* line 202, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
+/* line 203, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
 .memory_item {
   background: white;
   width: 400px;
   margin: 10px;
-  float: left;
   text-align: center;
 }
 
@@ -972,18 +971,25 @@ header a:hover {
 }
 
 /* line 214, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
+#box_li {
+  position: relative;
+  padding-left: 20px;
+}
+
+/* line 219, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
 #memory_drop {
   border: 5px dashed white;
   width: 400px;
   height: 200px;
-  margin-top: 150px;
+  position: absolute;
+  bottom: 0;
   border-radius: 20px;
   -o-border-radius: 20px;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
 }
 
-/* line 225, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
+/* line 231, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
 .bear {
   background: url("/assets/search_bear-04.png") 0 0 no-repeat;
   background-size: 300px;
@@ -992,52 +998,58 @@ header a:hover {
   height: 300px;
 }
 
-/* line 233, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
+/* line 239, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
 .bear_talk {
   background: white;
-  height: 100px;
-  width: 100px;
-  border-radius: 20px;
-  -o-border-radius: 20px;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
+  height: 110px;
+  width: 120px;
+  padding-left: 20px;
+  -webkit-clip-path: polygon(10% 0, 100% 0%, 100% 100%, 9% 100%, 9% 69%, 0 61%, 10% 52%);
+  -o-clip-path: polygon(10% 0, 100% 0%, 100% 100%, 9% 100%, 9% 69%, 0 61%, 10% 52%);
+  -moz-clip-path: polygon(10% 0, 100% 0%, 100% 100%, 9% 100%, 9% 69%, 0 61%, 10% 52%);
+  clip-path: polygon(10% 0, 100% 0%, 100% 100%, 9% 100%, 9% 69%, 0 61%, 10% 52%);
 }
 
-/* line 243, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
+/* line 250, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
 .bear_bar div {
   margin: 5px;
   width: 25px;
   background: #1C75BC;
 }
 
-/* line 249, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
+/* line 256, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
+#bear_ul {
+  margin: 0 auto;
+}
+
+/* line 260, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
 #bear_ul li {
   min-height: 330px;
-  height: 330px;
+  /*height: 330px;*/
   vertical-align: top;
 }
 
-/* line 256, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
+/* line 267, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
 .bear_bar li,
 #bear_ul li {
   height: 100px;
   display: inline-block;
 }
 
-/* line 262, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
+/* line 273, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
 .bear_bar li,
 .bear_bar {
   vertical-align: bottom;
 }
 
-/* line 268, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
+/* line 279, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
 #energy,
 #happy,
 #hungry {
   vertical-align: bottom;
 }
 
-/* line 272, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
+/* line 283, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
 .bear_blink {
   background-position: 0px -300px;
 }
