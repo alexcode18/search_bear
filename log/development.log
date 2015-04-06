@@ -6330,3 +6330,200 @@ Migrating to AddKeywordToMemories (20141218171719)
   [1m[35mSQL (23.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20141218171719"]]
   [1m[36m (69.8ms)[0m  [1mCOMMIT[0m
   [1m[35mActiveRecord::SchemaMigration Load (14.7ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/" for 127.0.0.1 at 2015-04-06 12:56:58 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ApplicationController#index as HTML
+  Rendered text template within layouts/application (0.1ms)
+Completed 200 OK in 388ms (Views: 362.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.fullPage.css?body=1" for 127.0.0.1 at 2015-04-06 12:56:59 -0400
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2015-04-06 12:56:59 -0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-04-06 12:56:59 -0400
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2015-04-06 12:56:59 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-06 12:56:59 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-06 12:56:59 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-04-06 12:56:59 -0400
+
+
+Started GET "/assets/jquery.fullPage.min.js?body=1" for 127.0.0.1 at 2015-04-06 12:56:59 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-04-06 12:56:59 -0400
+
+
+Started GET "/assets/jquery.slimscroll.min.js?body=1" for 127.0.0.1 at 2015-04-06 12:56:59 -0400
+
+
+Started GET "/" for 127.0.0.1 at 2015-04-06 12:57:24 -0400
+Processing by ApplicationController#index as HTML
+  Rendered text template within layouts/application (0.3ms)
+Completed 200 OK in 134ms (Views: 133.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.fullPage.css?body=1" for 127.0.0.1 at 2015-04-06 12:57:25 -0400
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2015-04-06 12:57:25 -0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-04-06 12:57:25 -0400
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2015-04-06 12:57:25 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-06 12:57:25 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-06 12:57:25 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-04-06 12:57:25 -0400
+
+
+Started GET "/assets/jquery.fullPage.min.js?body=1" for 127.0.0.1 at 2015-04-06 12:57:25 -0400
+
+
+Started GET "/assets/jquery.slimscroll.min.js?body=1" for 127.0.0.1 at 2015-04-06 12:57:25 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-04-06 12:57:25 -0400
+
+
+Started GET "/" for 127.0.0.1 at 2015-04-06 12:57:32 -0400
+Processing by ApplicationController#index as HTML
+  Rendered text template within layouts/application (0.0ms)
+Completed 200 OK in 110ms (Views: 109.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.fullPage.css?body=1" for 127.0.0.1 at 2015-04-06 12:57:32 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-06 12:57:32 -0400
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2015-04-06 12:57:32 -0400
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2015-04-06 12:57:32 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-06 12:57:32 -0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-04-06 12:57:32 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-04-06 12:57:32 -0400
+
+
+Started GET "/assets/jquery.fullPage.min.js?body=1" for 127.0.0.1 at 2015-04-06 12:57:32 -0400
+
+
+Started GET "/assets/jquery.slimscroll.min.js?body=1" for 127.0.0.1 at 2015-04-06 12:57:32 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-04-06 12:57:32 -0400
+
+
+Started GET "/" for 127.0.0.1 at 2015-04-06 12:57:41 -0400
+Processing by ApplicationController#index as HTML
+  Rendered text template within layouts/application (0.0ms)
+Completed 500 Internal Server Error in 97ms
+
+ActionView::Template::Error (Asset names passed to helpers should not include the "/assets/" prefix. Instead of "/assets/search_bear-06.png", use "search_bear-06.png"
+  (in /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb)):
+    2: <html>
+    3: <head>
+    4:   <title>Search Bear</title>
+    5:   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    6:   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    7:   <%= csrf_meta_tags %>
+    8:   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb__4304092437484336829_70216869661560'
+  app/controllers/application_controller.rb:9:in `index'
+
+
+  Rendered /Users/alexschattner/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /Users/alexschattner/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/alexschattner/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (17.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-04-06 12:57:47 -0400
+Processing by ApplicationController#index as HTML
+  Rendered text template within layouts/application (0.0ms)
+Completed 500 Internal Server Error in 41ms
+
+ActionView::Template::Error (Asset names passed to helpers should not include the "/assets/" prefix. Instead of "/assets/search_bear-06.png", use "search_bear-06.png"
+  (in /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb)):
+    2: <html>
+    3: <head>
+    4:   <title>Search Bear</title>
+    5:   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    6:   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    7:   <%= csrf_meta_tags %>
+    8:   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb__4304092437484336829_70216869661560'
+  app/controllers/application_controller.rb:9:in `index'
+
+
+  Rendered /Users/alexschattner/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /Users/alexschattner/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/alexschattner/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (10.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-04-06 12:57:56 -0400
+Processing by ApplicationController#index as HTML
+  Rendered text template within layouts/application (0.0ms)
+Completed 200 OK in 101ms (Views: 100.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.fullPage.css?body=1" for 127.0.0.1 at 2015-04-06 12:57:56 -0400
+
+
+Started GET "/assets/normalize.css?body=1" for 127.0.0.1 at 2015-04-06 12:57:56 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-04-06 12:57:57 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-04-06 12:57:57 -0400
+
+
+Started GET "/assets/reset.css?body=1" for 127.0.0.1 at 2015-04-06 12:57:57 -0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-04-06 12:57:57 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-04-06 12:57:57 -0400
+
+
+Started GET "/assets/jquery.fullPage.min.js?body=1" for 127.0.0.1 at 2015-04-06 12:57:57 -0400
+
+
+Started GET "/assets/jquery.slimscroll.min.js?body=1" for 127.0.0.1 at 2015-04-06 12:57:57 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-04-06 12:57:57 -0400
+
+
+Started GET "/assets/search_bear-06.png" for 127.0.0.1 at 2015-04-06 12:57:57 -0400
+
+
+Started GET "/assets/search_bear-07.png" for 127.0.0.1 at 2015-04-06 12:57:57 -0400

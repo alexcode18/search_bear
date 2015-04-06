@@ -816,14 +816,14 @@ header a {
 /* line 78, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
 #left_cave_wall {
   z-index: -1;
-  background-image: "/assets/search_bear-06.png" 0 0 no-repeat;
+  background: url("/assets/search_bear-06.png") 0 0 no-repeat;
   background-size: 445px 432px;
 }
 
 /* line 84, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
 #right_cave_wall {
   z-index: 0;
-  background-image: "/assets/search_bear-07.png" 0 0 no-repeat;
+  background: url("/assets/search_bear-07.png") 0 0 no-repeat;
   background-size: 445px 432px;
   right: 0;
 }
@@ -991,7 +991,7 @@ header a:hover {
 
 /* line 231, /Users/alexschattner/repos_wdi/search_bear/app/assets/stylesheets/application.css.scss.erb */
 .bear {
-  background-image: "/assets/search_bear-04.png" 0 0 no-repeat;
+  background: url("/assets/search_bear-04.png") 0 0 no-repeat;
   background-size: 300px;
   overflow: hidden;
   width: 250px;

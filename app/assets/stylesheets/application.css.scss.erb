@@ -76,13 +76,13 @@ header a {
 
 #left_cave_wall {
 	z-index: -1;
-	background-image: image_path('search_bear-06.png') 0 0 no-repeat;
+	background: url('<%= asset_path('search_bear-06.png') %>') 0 0 no-repeat;
 	background-size: 445px 432px;
 }
 
 #right_cave_wall {
 	z-index: 0;
-	background-image: image_path('search_bear-07.png') 0 0 no-repeat;
+	background: url('<%= asset_path('search_bear-07.png') %>') 0 0 no-repeat;
 	background-size: 445px 432px;
 	right: 0;
 }
@@ -228,7 +228,7 @@ header a:hover {
 }
 
 .bear {
-	background-image: image_path('search_bear-04.png') 0 0 no-repeat;
+	background: url('<%= asset_path('search_bear-04.png') %>') 0 0 no-repeat;
 	background-size: 300px;
 	overflow: hidden;
 	width: 250px;
