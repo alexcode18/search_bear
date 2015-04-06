@@ -36,7 +36,7 @@ gem 'pry-rails', :group => :development
 gem 'httparty'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-gem 'rails_12factor' #tells heroku how to find assets
+gem 'rails_12factor', group: :production #tells heroku how to find assets
 # Use unicorn as the app server
 # gem 'unicorn'
 
